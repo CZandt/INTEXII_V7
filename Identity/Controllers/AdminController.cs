@@ -17,7 +17,7 @@ namespace Identity.Controllers
             passwordHasher = passwordHash;
         }
 
-        // [Authorize(Roles = "Admin")] UNCOMMENT ONCE DATABASE
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View(userManager.Users);
@@ -66,7 +66,7 @@ namespace Identity.Controllers
             return View(user);
         }
 
-        // [Authorize(Roles = "Admin")] UNCOMMENT ONCE DATABASE
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(string id)
         {
             AppUser user = await userManager.FindByIdAsync(id);
@@ -76,7 +76,7 @@ namespace Identity.Controllers
                 return RedirectToAction("Index");
         }
 
-        // [Authorize(Roles = "Admin")] UNCOMMENT ONCE DATABASE
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(string id, string email, string password)
         {
@@ -113,7 +113,7 @@ namespace Identity.Controllers
                 ModelState.AddModelError("", error.Description);
         }
 
-        // [Authorize(Roles = "Admin")] UNCOMMENT ONCE DATABASE
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
