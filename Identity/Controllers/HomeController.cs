@@ -17,9 +17,6 @@ namespace Identity.Controllers
             userManager = userMgr;
             mummyContext = mumContext;   
         }
-
-        [Authorize]
-        //[Authorize(Roles = "Manager")]
         public async Task<IActionResult> Index()
         {
             AppUser user = await userManager.GetUserAsync(HttpContext.User);

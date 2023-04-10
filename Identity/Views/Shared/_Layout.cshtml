@@ -19,27 +19,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
-                        <!--THIS IS INDEX HAS AUTHORIZATION TAG ON CONTROLLER-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Authorized Page</a>
-                        </li>
 
-                        <!--IF UN AUTHENTICATED-->
-                        @if (!(User?.Identity?.IsAuthenticated) ?? false)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="/">Login</a>
-                            </li>
-                        }
 
 
 
                         <!--IF UN AUTHENTICATED-->
                         @if (!(User?.Identity?.IsAuthenticated) ?? false)
                         {
+                            <!-- Commented out becuase the normal use doesnt use an account
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create">Create User</a>
                             </li>
+
+
+                            -->
+                            
                         }
 
 
@@ -97,7 +92,13 @@
                             </li>
 
                         }
-
+                        <!--IF UN AUTHENTICATED-->
+                        @if (!(User?.Identity?.IsAuthenticated) ?? false)
+                        {
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="/">Login</a>
+                            </li>
+                        }
 
 
                     </ul>
