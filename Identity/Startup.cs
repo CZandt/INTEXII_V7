@@ -12,6 +12,7 @@ using System;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Identity.Models.Mummy;
+using MySql.EntityFrameworkCore;
 
 namespace Identity
 {
@@ -27,7 +28,7 @@ namespace Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseMySQL(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<ebdbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:MummyConnection"]));
            
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
