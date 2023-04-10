@@ -23,7 +23,6 @@ namespace Identity.Controllers
         public async Task<IActionResult> Index()
         {
             AppUser user = await userManager.GetUserAsync(HttpContext.User);
-            // string message = "Hello " + user.UserName;
             return View();
         }
 
