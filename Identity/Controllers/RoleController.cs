@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")] UNCOMMENT ONCE DATABASE
     public class RoleController : Controller
     {
         private RoleManager<IdentityRole> roleManager;
