@@ -18,7 +18,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
+
                         <!--THIS IS INDEX HAS AUTHORIZATION TAG ON CONTROLLER-->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Authorized Page</a>
@@ -27,58 +27,67 @@
                         <!--IF UN AUTHENTICATED-->
                         @if (!(User?.Identity?.IsAuthenticated) ?? false)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="/">Login</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="/">Login</a>
+                            </li>
                         }
-                        
-                        <!--ADMIN ONLY-->
-                        @if (User.IsInRole("Admin"))
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">All User</a>
-                        </li>
-                        }
-                        
+
+
+
                         <!--IF UN AUTHENTICATED-->
                         @if (!(User?.Identity?.IsAuthenticated) ?? false)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create">Create User</a>
-                        </li>
-                        }
-                        
-
-                        <!--ADMIN-->
-                        @if (User.IsInRole("Admin"))
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Index">All Roles</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create">Create User</a>
+                            </li>
                         }
 
-                        <!--ADMIN-->
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Summary">Burial Summary</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Supervised">Supervised Analysis</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Unsupervised">Unsupervised Analysis</a>
+                        </li>
+
+                        <!--ADMIN ONLY-->
                         @if (User.IsInRole("Admin"))
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Create">Create Role</a>
-                        </li> 
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    Admin Controls
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="Index">All User</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="Index">All Roles</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="Create">Create Role</a>
+
+                                </div>
+                            </li>
                         }
-                        
+
                         @if (User.IsInRole("Super Admin"))
                         {
-                        <!--SUPER ADMIN-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Project">Policy Authorization</a>
-                        </li>
-                        <!--SUPER ADMIN-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="TomFiles">Tom Files</a>
-                        </li>
-                        <!--SUPER ADMIN-->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="PrivateAccess">Private Accesss</a>
-                        </li>
+                            <!--SUPER ADMIN-->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Project">Policy Authorization</a>
+                            </li>
+                            <!--SUPER ADMIN-->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="TomFiles">Tom Files</a>
+                            </li>
+                            <!--SUPER ADMIN-->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="PrivateAccess">Private Accesss</a>
+                            </li>
+
 
                         }
                         @if (User?.Identity?.IsAuthenticated ?? false)
@@ -86,8 +95,10 @@
                             <li class="nav-item ml-auto">
                                 <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
                             </li>
-                            
+
                         }
+
+
 
                     </ul>
                 </div>

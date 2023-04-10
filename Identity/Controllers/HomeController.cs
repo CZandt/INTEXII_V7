@@ -22,5 +22,20 @@ namespace Identity.Controllers
             string message = "Hello " + user.UserName;
             return View((object)message);
         }
+
+        public IActionResult Summary()
+        {
+            return View();
+        }
+
+        public IActionResult Supervised()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised()
+        {
+            return View();
+        }
     }
 }
