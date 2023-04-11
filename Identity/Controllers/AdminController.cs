@@ -34,7 +34,8 @@ namespace Identity.Controllers
                 {
                     UserName = user.Name,
                     Email = user.Email,
-                    TwoFactorEnabled = true
+                    TwoFactorEnabled = true,
+                    EmailConfirmed = true
                     
                 };
 

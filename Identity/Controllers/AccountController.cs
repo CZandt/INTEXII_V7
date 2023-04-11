@@ -44,7 +44,6 @@ namespace Identity.Controllers
                     if (result.Succeeded)
                         return Redirect(login.ReturnUrl ?? "/");
 
-                    // uncomment Two Factor Authentication https://www.yogihosting.com/aspnet-core-identity-two-factor-authentication/
                     if (result.RequiresTwoFactor)
                     {
                         return RedirectToAction("LoginTwoStep", new { appUser.Email, login.ReturnUrl });

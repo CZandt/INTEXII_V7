@@ -13,7 +13,7 @@ namespace Identity.Models
 
             mailMessage.Subject = "Two Factor Code";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Body = code;
+            mailMessage.Body = "<h1>Your Code Is: " + code + "</h1>";
 
 
             SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
@@ -26,7 +26,7 @@ namespace Identity.Models
             client.Credentials = credentials;
            
 
-            try
+            try   
             {
                 client.Send(mailMessage);
                 return true;
@@ -48,10 +48,14 @@ namespace Identity.Models
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = confirmationLink;
 
-            SmtpClient client = new SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("egyptintex314@gmail.com", "admin314!");
-            client.Host = "smtpout.secureserver.net";
-            client.Port = 80;
+            SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            System.Net.NetworkCredential credentials =
+                    new System.Net.NetworkCredential("egyptintex314@outlook.com", "Admin314!");
+            client.EnableSsl = true;
+            client.Credentials = credentials;
 
             try
             {
@@ -68,17 +72,21 @@ namespace Identity.Models
         public bool SendEmailPasswordReset(string userEmail, string link)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("care@yogihosting.com");
+            mailMessage.From = new MailAddress("egyptintex314@outlook.com");
             mailMessage.To.Add(new MailAddress(userEmail));
 
             mailMessage.Subject = "Password Reset";
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = link;
 
-            SmtpClient client = new SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("care@yogihosting.com", "yourpassword");
-            client.Host = "smtpout.secureserver.net";
-            client.Port = 80;
+            SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            System.Net.NetworkCredential credentials =
+                    new System.Net.NetworkCredential("egyptintex314@outlook.com", "Admin314!");
+            client.EnableSsl = true;
+            client.Credentials = credentials; ;
 
             try
             {
