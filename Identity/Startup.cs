@@ -79,6 +79,13 @@ namespace Identity
                 opts.Lockout.MaxFailedAccessAttempts = 3;
             });
 
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+            });
+
             /*services.Configure<IdentityOptions>(opts =>
             {
                 opts.SignIn.RequireConfirmedEmail = true;
