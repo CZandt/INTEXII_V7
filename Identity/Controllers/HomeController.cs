@@ -25,11 +25,78 @@ namespace Identity.Controllers
 
         public IActionResult Summary()
         {
-            var mummies = mummyContext.Burialmains.Take(10).ToList();
+            var mummies = mummyContext.Burialmains
+                .OrderBy(x => x.Preservation)
+                .ToList();
+
             return View(mummies);
         }
 
-        public IActionResult Supervised()
+        [HttpGet]
+        public IActionResult AddData()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddData(Burialmain burialmain)
+        {
+            if (ModelState.IsValid)
+            {
+                mummyContext.Add(burialmain);
+                mummyContext.SaveChanges();
+
+                return View("AddEditConfirmation");
+            }
+            else
+            {
+                return View();
+            }
+            
+        }
+
+        [HttpGet]
+        public IActionResult Edit (long id)
+        {
+            var data = mummyContext.Burialmains.Single(x => x.Id == id);
+
+            return View("AddData", data);
+        }
+
+        [HttpPost]
+        public IActionResult Edit (Burialmain burialmain)
+        {
+            if (ModelState.IsValid)
+            {
+                mummyContext.Update(burialmain);
+                mummyContext.SaveChanges();
+
+                return RedirectToAction("Summary");
+            }
+            else //If data entry not valid
+            {
+                return View(burialmain);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete (long id)
+        {
+            var data = mummyContext.Burialmains.Single(x => x.Id == id);
+
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult Delete (Burialmain burialmain)
+        {
+            mummyContext.Burialmains.Remove(burialmain);
+            mummyContext.SaveChanges();
+
+            return RedirectToAction("Summary");
+        }
+
+        public IActionResult Supervised(Burialmain burialmain)
         {
             return View();
         }

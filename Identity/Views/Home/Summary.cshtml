@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "Summary";
 }
 @model List<Burialmain>;
@@ -10,18 +7,29 @@
 
 <table class="table table-sm table-bordered">
     <tr>
-        <th>id</th>
-        <th>Text</th>
-        <th>Area</th>
         <th>Depth</th>
+        <th>Length</th>
+        <th>Head Direction</th>
+        <th>Preservation</th>
+        <th>Wrapping</th>
+        <th>Sex</th>
+        <th>Age at Death</th>
+        <th>Hair Color</th>
     </tr>
 
-    @foreach(Burialmain x in Model) {
+    @foreach(Burialmain x in Model) 
+    {
         <tr>
-            <td>@x.Id</td>
-            <td>@x.Text </td>
-            <td>@x.Area</td>
             <td>@x.Depth</td>
+            <td>@x.Length </td>
+            <td>@x.Headdirection</td>
+            <td>@x.Preservation</td>
+            <td>@x.Wrapping</td>
+            <td>@x.Sex</td>
+            <td>@x.Ageatdeath</td>
+            <td>@x.Haircolor</td>
+            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
         </tr>
-    }
+            }
 </table>
