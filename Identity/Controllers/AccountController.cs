@@ -39,16 +39,16 @@ namespace Identity.Controllers
                 if (appUser != null)
                 {
                     await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, false);
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, true); //Changed to true
 
                     if (result.Succeeded)
                         return Redirect(login.ReturnUrl ?? "/");
 
                     // uncomment Two Factor Authentication https://www.yogihosting.com/aspnet-core-identity-two-factor-authentication/
-                    /*if (result.RequiresTwoFactor)
+                    if (result.RequiresTwoFactor)
                     {
                         return RedirectToAction("LoginTwoStep", new { appUser.Email, login.ReturnUrl });
-                    }*/
+                    }
 
                     // Uncomment Email confirmation https://www.yogihosting.com/aspnet-core-identity-email-confirmation/
                     /*bool emailStatus = await userManager.IsEmailConfirmedAsync(appUser);

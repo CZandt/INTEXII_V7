@@ -8,17 +8,23 @@ namespace Identity.Models
         public bool SendEmailTwoFactorCode(string userEmail, string code)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("care@yogihosting.com");
+            mailMessage.From = new MailAddress("egyptintex314@outlook.com");
             mailMessage.To.Add(new MailAddress(userEmail));
 
             mailMessage.Subject = "Two Factor Code";
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = code;
 
-            SmtpClient client = new SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("care@yogihosting.com", "yourpassword");
-            client.Host = "smtpout.secureserver.net";
-            client.Port = 80;
+
+            SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
+            client.Port = 587;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            System.Net.NetworkCredential credentials =
+                    new System.Net.NetworkCredential("egyptintex314@outlook.com", "Admin314!");
+            client.EnableSsl = true;
+            client.Credentials = credentials;
+           
 
             try
             {
@@ -35,7 +41,7 @@ namespace Identity.Models
         public bool SendEmail(string userEmail, string confirmationLink)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("care@yogihosting.com");
+            mailMessage.From = new MailAddress("egyptintex314@gmail.com");
             mailMessage.To.Add(new MailAddress(userEmail));
 
             mailMessage.Subject = "Confirm your email";
@@ -43,7 +49,7 @@ namespace Identity.Models
             mailMessage.Body = confirmationLink;
 
             SmtpClient client = new SmtpClient();
-            client.Credentials = new System.Net.NetworkCredential("care@yogihosting.com", "yourpassword");
+            client.Credentials = new System.Net.NetworkCredential("egyptintex314@gmail.com", "admin314!");
             client.Host = "smtpout.secureserver.net";
             client.Port = 80;
 
