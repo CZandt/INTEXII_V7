@@ -92,6 +92,7 @@ namespace Identity
             });*/
 
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,9 +119,24 @@ namespace Identity
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("filterpage",
+                    "{filter}/Page{pageNum}",
+                    new { Controller = "Home", action = "Summary" });
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Summary", pageNum = 1 });
+
+                endpoints.MapControllerRoute("filter",
+                    "{filter}",
+                    new { Controller = "Home", action = "Summary", pageNum = 1 });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

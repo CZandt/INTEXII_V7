@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Identity.Models.Mummy;
 using System.Linq;
+using Identity.Models.ViewModels;
 
 namespace Identity.Controllers
 {
@@ -15,7 +16,7 @@ namespace Identity.Controllers
         public HomeController(UserManager<AppUser> userMgr, ebdbContext mumContext)
         {
             userManager = userMgr;
-            mummyContext = mumContext;   
+            mummyContext = mumContext;
         }
         public async Task<IActionResult> Index()
         {
@@ -23,13 +24,31 @@ namespace Identity.Controllers
             return View();
         }
 
-        public IActionResult Summary()
+        public IActionResult Summary(string filter, int pageNum = 1)
         {
-            var mummies = mummyContext.Burialmains
-                .OrderBy(x => x.Preservation)
-                .ToList();
+            int pageSize = 20;
 
-            return View(mummies);
+            var x = new RecordsViewModel
+            {
+                Burialmains = mummyContext.Burialmains
+                .Where(x => x.Headdirection == filter | filter == null)
+                .OrderBy(x => x.Preservation)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList(),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumRecords = 
+                        (filter == null ? 
+                        mummyContext.Burialmains.Count() : 
+                        mummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
+                    RecordsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
 
         [HttpGet]
@@ -94,6 +113,13 @@ namespace Identity.Controllers
             mummyContext.SaveChanges();
 
             return RedirectToAction("Summary");
+        }
+
+        public IActionResult Details (long id)
+        {
+            var data = mummyContext.Burialmains.Single(x => x.Id == id);
+
+            return View(data);
         }
 
         public IActionResult Supervised(Burialmain burialmain)
