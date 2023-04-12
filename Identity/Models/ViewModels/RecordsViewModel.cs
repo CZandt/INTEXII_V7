@@ -11,5 +11,6 @@ namespace Identity.Models.ViewModels
         public List<Burialmain> Burialmains {get; set;}
         public PageInfo PageInfo { get; set; }
         public List<Textile> Textiles { get; set; }
+        public List<Artifactfagelgamousregister> Artifactfagelgamousregisters { get; set; }
     }
 }

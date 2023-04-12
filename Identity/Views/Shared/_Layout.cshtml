@@ -6,6 +6,18 @@
     <title>@ViewData["Title"] - Identity</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchBar").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
     <header>
@@ -39,7 +51,7 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Summary">Burial Summary</a>
+                            <a class="nav-link text-dark" asp-controller="Table" asp-action="Summary">Burial Summary</a>
                         </li>
 
                         <li class="nav-item">

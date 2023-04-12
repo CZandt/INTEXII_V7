@@ -121,16 +121,21 @@ namespace Identity
             {
                 endpoints.MapControllerRoute("filterpage",
                     "{filter}/Page{pageNum}",
-                    new { Controller = "Home", action = "Summary" });
+                    new { Controller = "Table", action = "Summary" });
 
                 endpoints.MapControllerRoute(
                     name: "Paging",
                     pattern: "Page{pageNum}",
-                    defaults: new { Controller = "Home", action = "Summary", pageNum = 1 });
+                    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
 
                 endpoints.MapControllerRoute("filter",
                     "{filter}",
-                    new { Controller = "Home", action = "Summary", pageNum = 1 });
+                    new { Controller = "Table", action = "Summary", pageNum = 1 });
+
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Artifacts";
+}
+
+@model RecordsViewModel
+
+<h1>Artifacts</h1>
+
+<div>
+    <partial name="TableNav" />
+</div>
+
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Details</th>
+        <th>Register Num</th>
+        <th>Photographed</th>
+        <th>Notes</th>
+        <th>Coordinate Set</th>
+    </tr>
+
+    @foreach (Artifactfagelgamousregister x in Model.Artifactfagelgamousregisters)
+    {
+        <tr>
+            <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
+            <td>@x.Registernum</td>
+            <td>@x.Photographed</td>
+            <td>@x.Notes</td>
+            <td>@x.Coordinateset</td>
+        </tr>
+    }
+</table>
+
+<div page-model="@Model.PageInfo" page-action="Summary"></div>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Textiles";
+}
+
+@model RecordsViewModel
+
+<h1>Textiles</h1>
+
+<div>
+    <partial name="TableNav" />
+</div>
+
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Details</th>
+        <th>Direction</th>
+        <th>Locale</th>
+        <th>Description</th>
+        <th>Estimated Period</th>
+        <th>Photographed Date</th>
+        <th>Sampledate</th>
+    </tr>
+
+    @foreach (Textile x in Model.Textiles)
+    {
+        <tr>
+            <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
+            <td>@x.Direction </td>
+            <td>@x.Locale</td>
+            <td>@x.Description</td>
+            <td>@x.Estimatedperiod</td>
+            <td>@x.Photographeddate</td>
+            <td>@x.Sampledate</td>
+        </tr>
+    }
+</table>
+
+<div page-model="@Model.PageInfo" page-action="Textiles"></div>

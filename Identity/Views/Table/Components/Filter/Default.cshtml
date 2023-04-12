@@ -1,0 +1,13 @@
+﻿@{
+}
+
+@model IEnumerable<string>
+
+<div>
+    <a asp-controller="Table" asp-action="Summary" asp-route-filter="" asp-route-pageNum="1" class="btn-block">Clear Filters</a>
+
+    @foreach (string t in Model)
+    {
+        <a asp-controller="Table" asp-action="Summary" asp-route-filter="@t" asp-route-pageNum="1" class="btn @(ViewBag.SelectedFilter == t ? "btn-primary" : "btn-outline-secondary")">@t</a>
+    }
+</div>

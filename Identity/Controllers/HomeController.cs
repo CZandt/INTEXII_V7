@@ -24,32 +24,32 @@ namespace Identity.Controllers
             return View();
         }
 
-        public IActionResult Summary(string filter, int pageNum = 1)
-        {
-            int pageSize = 20;
+        //public IActionResult Summary(string filter, int pageNum = 1)
+        //{
+        //    int pageSize = 20;
 
-            var x = new RecordsViewModel
-            {
-                Burialmains = mummyContext.Burialmains
-                .Where(x => x.Headdirection == filter | filter == null)
-                .OrderBy(x => x.Preservation)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize)
-                .ToList(),
+        //    var x = new RecordsViewModel
+        //    {
+        //        Burialmains = mummyContext.Burialmains
+        //        .Where(x => x.Headdirection == filter | filter == null)
+        //        .OrderBy(x => x.Preservation)
+        //        .Skip((pageNum - 1) * pageSize)
+        //        .Take(pageSize)
+        //        .ToList(),
 
-                PageInfo = new PageInfo
-                {
-                    TotalNumRecords = 
-                        (filter == null ? 
-                        mummyContext.Burialmains.Count() : 
-                        mummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
-                    RecordsPerPage = pageSize,
-                    CurrentPage = pageNum
-                }
-            };
+        //        PageInfo = new PageInfo
+        //        {
+        //            TotalNumRecords =
+        //                (filter == null ?
+        //                mummyContext.Burialmains.Count() :
+        //                mummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
+        //            RecordsPerPage = pageSize,
+        //            CurrentPage = pageNum
+        //        }
+        //    };
 
-            return View(x);
-        }
+        //    return View(x);
+        //}
 
         [HttpGet]
         public IActionResult AddData()
@@ -90,7 +90,7 @@ namespace Identity.Controllers
                 mummyContext.Update(burialmain);
                 mummyContext.SaveChanges();
 
-                return RedirectToAction("Summary");
+                return RedirectToAction("Summary", "Table");
             }
             else //If data entry not valid
             {
@@ -112,7 +112,7 @@ namespace Identity.Controllers
             mummyContext.Burialmains.Remove(burialmain);
             mummyContext.SaveChanges();
 
-            return RedirectToAction("Summary");
+            return RedirectToAction("Summary", "Table");
         }
 
         public IActionResult Details (long id)
