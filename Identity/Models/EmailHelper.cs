@@ -77,7 +77,7 @@ namespace Identity.Models
 
             mailMessage.Subject = "Password Reset";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Body = "<button type='button'><a href='" + link + "'>Reset Password</a></button>";
+            mailMessage.Body = link;
 
             SmtpClient client = new SmtpClient("smtp-mail.outlook.com");
             client.Port = 587;
