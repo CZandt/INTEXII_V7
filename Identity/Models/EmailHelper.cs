@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Identity.SecretsMgr;
+using System;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace Identity.Models
 {
     public class EmailHelper
     {
-        public bool SendEmailTwoFactorCode(string userEmail, string code)
+        public async Task<bool> SendEmailTwoFactorCodeAsync(string userEmail, string code)
         {
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress("egyptintex314@outlook.com");
@@ -20,13 +22,17 @@ namespace Identity.Models
             client.Port = 587;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            System.Net.NetworkCredential credentials =
-                    new System.Net.NetworkCredential("egyptintex314@outlook.com", "Admin314!");
+
+            string email = "egyptintex314@outlook.com";
+            string password = await AWSSecretsManager.GetEmailAccountPassword();
+
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(email, password);
             client.EnableSsl = true;
             client.Credentials = credentials;
-           
 
-            try   
+
+
+            try
             {
                 client.Send(mailMessage);
                 return true;
