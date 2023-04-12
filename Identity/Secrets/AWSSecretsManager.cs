@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
-
+//cole
 namespace Identity.Secrets
 {
     public class AWSSecretsManager
