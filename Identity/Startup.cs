@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Identity.Models.Mummy;
 using Microsoft.AspNetCore.Http;
+using Microsoft.ML.OnnxRuntime;
 
 namespace Identity
 {
@@ -86,6 +87,8 @@ namespace Identity
                 options.MaxAge = TimeSpan.FromDays(60);
             });
 
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("head_directioon_model.onnx"));
             /*services.Configure<IdentityOptions>(opts =>
             {
                 opts.SignIn.RequireConfirmedEmail = true;
