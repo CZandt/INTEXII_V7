@@ -59,7 +59,7 @@ namespace Identity.Controllers
             prediction.PredictedValue = TestFinal;
 
 
-            return View("PredictedSupervised",prediction);
+            return View("PredictedSupervised", prediction);
         }
 
         public IActionResult Unsupervised()

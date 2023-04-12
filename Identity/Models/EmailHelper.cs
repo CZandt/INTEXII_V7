@@ -41,7 +41,7 @@ namespace Identity.Models
         public bool SendEmail(string userEmail, string confirmationLink)
         {
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("egyptintex314@gmail.com");
+            mailMessage.From = new MailAddress("egyptintex314@outlook.com");
             mailMessage.To.Add(new MailAddress(userEmail));
 
             mailMessage.Subject = "Confirm your email";
