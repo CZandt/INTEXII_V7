@@ -14,7 +14,6 @@ using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Identity.Models.Mummy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.ML.OnnxRuntime;
-using Identity.SecretsMgr;
 
 namespace Identity
 {
@@ -38,12 +37,10 @@ namespace Identity
                 options.MinimumSameSitePolicy = SameSiteMode.None;
 
             });
-            
+
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddDbContext<ebdbContext>( options => options.UseNpgsql(Configuration["ConnectionString:MummyConnection"]));
-
-
-
+            services.AddDbContext<ebdbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:MummyConnection"]));
+           
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
             services.Configure<DataProtectionTokenProviderOptions>(opts => opts.TokenLifespan = TimeSpan.FromHours(10));
             services.ConfigureApplicationCookie(options =>
