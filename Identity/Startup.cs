@@ -39,7 +39,7 @@ namespace Identity
             });
 
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddDbContext<ebdbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:MummyConnection"]));
+            services.AddDbContext<ebdbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:MummyConnection2"]));
            
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
             services.Configure<DataProtectionTokenProviderOptions>(opts => opts.TokenLifespan = TimeSpan.FromHours(10));
