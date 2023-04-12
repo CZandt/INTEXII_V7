@@ -125,7 +125,7 @@ namespace Identity.Controllers
             var token = await userManager.GenerateTwoFactorTokenAsync(user, "Email");
 
             EmailHelper emailHelper = new EmailHelper();
-            bool emailResponse = emailHelper.SendEmailTwoFactorCode(user.Email, token);
+            bool emailResponse = emailHelper.SendEmailTwoFactorCodeAsync(user.Email, token);
 
             return View();
         }
