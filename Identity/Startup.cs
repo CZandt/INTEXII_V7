@@ -86,7 +86,7 @@ namespace Identity
                 options.IncludeSubDomains = true;
                 options.MaxAge = TimeSpan.FromDays(60);
             });
-
+             
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("head_directioon_model.onnx"));
             /*services.Configure<IdentityOptions>(opts =>
