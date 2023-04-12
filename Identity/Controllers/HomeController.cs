@@ -34,20 +34,16 @@ namespace Identity.Controllers
             return View(mummies);
         }
 
+        [HttpGet]
         public IActionResult Supervised()
         {
-            //Creates the data object to be put in the model
-            MummyData testData = new MummyData();
 
-            //MANUALLY APPLIES ALL THE VALUES
-            testData.squarenorthsouth = (float)200;
-            testData.depth = (float)1.86;
-            testData.southtohead = (float)2.96;
-            testData.squareeastwest = (float)20.0;
-            testData.westtohead = (float)0.69;
-            testData.length = (float)1.66;
-            testData.westtofeet = (float)2.24;
-            testData.southtofeet = (float)2.97;
+            return View(new MummyData());
+        }
+
+        [HttpPost]
+        public IActionResult Supervised(MummyData testData)
+        {
 
             //RUNS THE ONNX
             var result = _session.Run(new List<NamedOnnxValue>
@@ -63,7 +59,7 @@ namespace Identity.Controllers
             prediction.PredictedValue = TestFinal;
 
 
-            return View(prediction);
+            return View("PredictedSupervised",prediction);
         }
 
         public IActionResult Unsupervised()

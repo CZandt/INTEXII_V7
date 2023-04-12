@@ -4,10 +4,57 @@
 @{
     ViewData["Title"] = "Supervised";
 }
-@model Prediction
+@model MummyData
 
+<div>
+    <h1>Predict Head Direction Form</h1>
+</div>
 
+<form method="post" asp-action="Supervised">
+    <div asp-validation-summary="All" class="text-danger"></div>
 
-<h1>Supervised</h1>
+    <div class="form-group">
+        <label asp-for="length">Length</label>
+        <input asp-for="length" />
+    </div>
 
-<h2>Test Prediction: @Model.PredictedValue</h2>
+    <div class="form-group">
+        <label asp-for="depth">Depth</label>
+        <input asp-for="depth" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="squarenorthsouth">Square North South</label>
+        <input asp-for="squarenorthsouth" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="southtohead">South to Head</label>
+        <input asp-for="southtohead" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="squareeastwest">Square East West</label>
+        <input asp-for="squareeastwest" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="westtohead">West to Head</label>
+        <input asp-for="westtohead" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="westtofeet">West to Feet</label>
+        <input asp-for="westtofeet" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="southtofeet">South to Feet</label>
+        <input asp-for="southtofeet" />
+    </div>
+
+    <div class="float-end">
+        <input class="btn btn-primary" type="submit" value="Predict Head Direction" />
+    </div>
+
+</form>
