@@ -20,7 +20,7 @@ namespace Identity.Controllers
             userManager = userMrg;
         }
 
-        public IActionResult Index() => View(roleManager.Roles);
+        public IActionResult IndexRoles() => View("Index", roleManager.Roles);
 
         private void Errors(IdentityResult result)
         {
@@ -91,7 +91,7 @@ namespace Identity.Controllers
             }
 
             if (ModelState.IsValid)
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexRoles));
             else
                 return await Update(model.RoleId);
         }

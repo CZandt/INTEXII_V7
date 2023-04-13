@@ -18,9 +18,9 @@ namespace Identity.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public IActionResult Index()
+        public IActionResult IndexUsers()
         {
-            return View(userManager.Users);
+            return View("Index",userManager.Users);
         }
 
         public IActionResult Create() => View();
