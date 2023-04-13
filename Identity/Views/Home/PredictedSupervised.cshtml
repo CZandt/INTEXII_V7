@@ -3,11 +3,54 @@
 *@
 @{
     ViewData["Title"] = "PredictedSupervised";
+
+    if (Model.PredictedValue == "W") {
+
+        ViewData["Direction"] = "West";
+    }
+
+    if (Model.PredictedValue == "E")
+    {
+        ViewData["Direction"] = "East";
+    }
 }
 @model Prediction
 
 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    @if (Model.PredictedValue == "W")
+            {
+                <h2>Predicted Head Direction : West</h2>
+            } 
+                    @if (Model.PredictedValue == "E")
+            {
+                <h2>Predicted Head Direction : East</h2>
+            }
+                </div>
 
-<h1>Supervised</h1>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-body">
+                                    <p>The logistic regression model predicted a head direction of @ViewData["Direction"] </p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <p>What the frick beans bro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h2>Test Prediction: @Model.PredictedValue</h2>
+</div>
