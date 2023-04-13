@@ -34,7 +34,9 @@ namespace Identity.Controllers
                 {
                     UserName = user.Name,
                     Email = user.Email,
-                    //TwoFactorEnabled = true
+                    TwoFactorEnabled = true,
+                    EmailConfirmed = true
+                    
                 };
 
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
