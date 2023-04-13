@@ -37,24 +37,6 @@
                     <ul class="navbar-nav flex-grow-1">
 
 
-
-
-
-                        <!--IF UN AUTHENTICATED-->
-                        @if (!(User?.Identity?.IsAuthenticated) ?? false)
-                        {
-                            <!-- Commented out becuase the normal user doesnt use an account
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create">Create User</a>
-        </li>
-
-
-        -->
-
-                        }
-
-
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Table" asp-action="Summary">Burial Summary</a>
                         </li>
