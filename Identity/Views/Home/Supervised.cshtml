@@ -6,61 +6,85 @@
 }
 @model MummyData
 
+<div class="container">
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <form method="post" asp-action="Supervised">
+                    <div class="card-header">
+                        <h3>Predict Head Direction</h3>
+                    </div>
+                    <div class="card-body">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="length">Length</label>
+                            <input asp-for="length" class="form-control" />
+                        </div>
 
-<div class="card">
-    <form method="post" asp-action="Supervised">
-        <div class="card-header">
-            <h3>Predict Head Direction</h3>
+                        <div class="form-group">
+                            <label asp-for="depth">Depth</label>
+                            <input asp-for="depth" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="squarenorthsouth">Square North South</label>
+                            <input asp-for="squarenorthsouth" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="southtohead">South to Head</label>
+                            <input asp-for="southtohead" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="squareeastwest">Square East West</label>
+                            <input asp-for="squareeastwest" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="westtohead">West to Head</label>
+                            <input asp-for="westtohead" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="westtofeet">West to Feet</label>
+                            <input asp-for="westtofeet" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="southtofeet">South to Feet</label>
+                            <input asp-for="southtofeet" class="form-control" />
+                        </div>
+
+                        <div class="float-end">
+                            <input class="btn btn-primary" type="submit" value="Predict Head Direction" />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="length">Length</label>
-                <input asp-for="length" class="form-control"/>
+        <div class="col-5">
+            <div class="conatiner">
+                <div class="row">
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h5>Predicting Head with Logistic Regression</h5>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <p>Logistic regression is a suitable choice for predicting the head direction of mummies due to its ability to model the probability of a binary outcome, which in this case is the direction of the mummy's head. The features used in the logistic regression model, such as length, depth, and distance measurements, provide relevant information for predicting the head direction. Furthermore, logistic regression allows for easy interpretation of the coefficients, enabling researchers to understand the impact of each feature on the direction of the mummy's head. Overall, logistic regression is a reliable and effective method for predicting the head direction of mummies, providing valuable insights for archaeological studies.</p>
+                            </div>
+                        </div>
+                        <img src="~/img/Supervised/TablatClear.png" class="card-img-bottom h-50 w-50 mx-auto d-block" />
+                        
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="depth">Depth</label>
-                <input asp-for="depth" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="squarenorthsouth">Square North South</label>
-                <input asp-for="squarenorthsouth" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="southtohead">South to Head</label>
-                <input asp-for="southtohead" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="squareeastwest">Square East West</label>
-                <input asp-for="squareeastwest" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="westtohead">West to Head</label>
-                <input asp-for="westtohead" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="westtofeet">West to Feet</label>
-                <input asp-for="westtofeet" class="form-control" />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="southtofeet">South to Feet</label>
-                <input asp-for="southtofeet" class="form-control" />
-            </div>
-
-            <div class="float-end">
-                <input class="btn btn-primary" type="submit" value="Predict Head Direction" />
-            </div>
         </div>
+    </div>
 
-
-    </form>
-   
 </div>
+
 
