@@ -42,5 +42,8 @@ namespace Identity.Models.Mummy
         public string Fieldbookexcavationyear { get; set; }
         public string Clusternumber { get; set; }
         public string Shaftnumber { get; set; }
+
+        public ICollection<BurialmainTextile> BurialmainTextiles { get; set; }
+        public ICollection<ArtifactkomaushimregisterBurialmain> ArtifactkomaushimregisterBurialmains { get; set; }
     }
 }

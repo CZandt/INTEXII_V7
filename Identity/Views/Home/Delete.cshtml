@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Delete Application";
+}
+
+@model Burialmain
+
+<h1>Confirm data deletion</h1>
+
+<h2>Are you sure you want to delete burial record with ID: @Model.Id?</h2>
+
+<form method="post" asp-controller="Home" asp-action="Delete">
+    <button type="submit" class="btn-danger">Delete</button>
+    <a asp-controller="Table" asp-action="Summary" class="btn-primary">Cancel</a>
+
+    <input type="hidden" asp-for="Id" />
+</form>

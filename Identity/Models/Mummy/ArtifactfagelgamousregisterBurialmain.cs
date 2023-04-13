@@ -7,7 +7,10 @@ namespace Identity.Models.Mummy
 {
     public partial class ArtifactfagelgamousregisterBurialmain
     {
-        public long MainArtifactfagelgamousregisterid { get; set; }
-        public long MainBurialmainid { get; set; }
+        public long Artifactfagelgamousregisterid { get; set; }
+        public Artifactfagelgamousregister Artifactfagelgamousregister {get; set;}
+
+        public long Burialmainid { get; set; }
+        public Burialmain burialmain { get; set; }
     }
 }

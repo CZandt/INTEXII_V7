@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Burialmain
+
+<h3>Textiles</h3>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Direction</th>
+        <th>Locale</th>
+        <th>Description</th>
+        <th>Estimated Period</th>
+        <th>Photographed Date</th>
+        <th>Sample Date</th>
+    </tr>
+
+    @foreach (var item in Model.BurialmainTextiles)
+    {
+        <tr>
+            <td>@Html.DisplayNameFor(model => item.Textile.Direction)</td>
+            <td>@Html.DisplayNameFor(model => item.Textile.Locale)</td>
+            <td>@Html.DisplayNameFor(model => item.Textile.Description)</td>
+            <td>@Html.DisplayNameFor(model => item.Textile.Estimatedperiod)</td>
+            <td>@Html.DisplayNameFor(model => item.Textile.Photographeddate)</td>
+            <td>@Html.DisplayNameFor(model => item.Textile.Sampledate)</td>
+        </tr>
+    }
+</table>
+
+<br />
+
+<h3>Artifacts</h3>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Number</th>
+        <th>Position</th>
+        <th>Date</th>
+        <th>Material</th>
+        <th>Dimensions</th>
+        <th>Provenance</th>
+        <th>Current Location</th>
+        <th>Rehoused To</th>
+        <th>Photos</th>
+    </tr>
+
+    @foreach (var item in Model.ArtifactkomaushimregisterBurialmains)
+    {
+<tr>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Number)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Position)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Date)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Material)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Dimensions)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Provenance)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Currentlocation)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Rehousedto)</td>
+    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Photos)</td>
+</tr>
+    }
+</table>

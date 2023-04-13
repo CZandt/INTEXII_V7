@@ -23,5 +23,7 @@ namespace Identity.Models.Mummy
         public string Currentlocation { get; set; }
         public string Excavatornum { get; set; }
         public string Date { get; set; }
+
+        public ICollection<ArtifactkomaushimregisterBurialmain> ArtifactkomaushimregisterBurialmains { get; set; }
     }
 }
