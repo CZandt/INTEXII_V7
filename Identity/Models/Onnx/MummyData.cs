@@ -1,4 +1,5 @@
 ﻿using Microsoft.ML.OnnxRuntime.Tensors;
+using System.ComponentModel.DataAnnotations;
 
 namespace Identity.Models.Onnx
 {
