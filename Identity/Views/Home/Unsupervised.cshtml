@@ -1,9 +1,52 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    @*
+       For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     ViewData["Title"] = "Unsupervised";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsupervised Model</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        .report {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4 mb-4">Unsupervised Model</h1>
 
-<h1>Unsupervised Placeholder</h1>
+        <div class="report">
+            <p>
+                In our unsupervised models, we determined the top two variables that have the greatest impact on the depth by using Principal Component Analysis (PCA) which is a model that helps identify the most significant variables in a dataset.
+                The principal components are ordered by the amount of variance they capture from the original data. To determine the top two variables that have the most impact on the depth, we looked at the coefficients of the variables after running the PCA model.
+                In our case, the variables femurlength and southtohead had the highest coefficients. This means that these two variables contribute the most to the overall variance captured by the model. As a result, we identified femurlength and southtohead as the top two variables that have the greatest impact on the depth. After deciding on these two variables, we created a scatterplot to show the relationships between these three variables. We found that there is not a significant relationship that is obvious even for these top two variables. However, a couple things that might be noticeable is that as depth increases, the value of southtohead increases slightly hinting at a very small positive correlation. For the femur length and depth, there are many different femur lengths at different levels meaning that there is not much of a strong relationship. However one thing that is noticeable is that there are no very short femur length mummies burried at high depths. As children have shorter femurs, this could maybe draw conclusions such as the burrial of children was a practice introduced later as they were burried at lower depths. Alternatively, it could just mean children were just burried at lower depths. This is something that would need further research.
+            </p>
+            <p>
+                Some other possible reasons for different femur lengths at different depth levels may include:
+            </p>
+            <ul>
+                <li>Mummies from different social classes or statuses may have been buried at different depths, and social status could determine factors such as access to nutrition, healthcare, and living conditions, which could result in longer femur lengths. And lower social status may have been associated with poorer nutrition and living conditions, leading to shorter femur lengths.</li>
+                <li>Burial practices can vary between different cultures or even within the same culture over time. The depth of burial can be influenced by other factors such as religious beliefs, rituals, or traditions. An exmaple can be that some cultures may have specific burial practices for certain age groups, genders, or occupations, which could lead to differences in femur length at various depths.</li>
+            </ul>
+            <p>
+                For the variable southtohead, although we do see a slight relationship, we do now know what the variable means, so it would be up to the mummy professionals to decide what this relationship could indicate. 
+            </p>
+        </div>
+
+        <h3>Scatter Plot</h3>
+        <div>
+            <iframe src="~/scatterplot2.html" width="90%" height="600" frameborder="10"></iframe>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
