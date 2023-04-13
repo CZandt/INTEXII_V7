@@ -7,7 +7,10 @@ namespace Identity.Models.Mummy
 {
     public partial class TextilefunctionTextile
     {
-        public long MainTextilefunctionid { get; set; }
-        public long MainTextileid { get; set; }
+        public long Textilefunctionid { get; set; }
+        public Textilefunction Textilefunction { get; set; }
+
+        public long Textileid { get; set; }
+        public Textile Textile {get; set; }
     }
 }

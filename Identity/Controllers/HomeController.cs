@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Identity.Models.Mummy;
 using System.Linq;
 using Identity.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Controllers
 {
@@ -115,9 +116,14 @@ namespace Identity.Controllers
             return RedirectToAction("Summary", "Table");
         }
 
-        public IActionResult Details (long id)
+        public async Task<IActionResult> DetailsAsync (long id)
         {
-            var data = mummyContext.Burialmains.Single(x => x.Id == id);
+            var data = await mummyContext.Burialmains
+                .Include(x => x.BurialmainTextiles)
+                .ThenInclude(x => x.Textile)
+                .Include(x => x.ArtifactkomaushimregisterBurialmains)
+                .ThenInclude(x => x.Artifactkomaushimregister)
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             return View(data);
         }

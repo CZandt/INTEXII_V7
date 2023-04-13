@@ -10,5 +10,7 @@ namespace Identity.Models.Mummy
         public long Id { get; set; }
         public string Value { get; set; }
         public int? Colorid { get; set; }
+
+        public ICollection<ColorTextile> ColorTextiles { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Identity.Models.Mummy;
 using Identity.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Controllers
 {
@@ -32,9 +33,9 @@ namespace Identity.Controllers
                 PageInfo = new PageInfo
                 {
                     TotalNumRecords =
-                        (filter == null ?
-                        MummyContext.Burialmains.Count() :
-                        MummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
+                            (filter == null ?
+                            MummyContext.Burialmains.Count() :
+                            MummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
                     RecordsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
@@ -72,6 +73,12 @@ namespace Identity.Controllers
             var x = new RecordsViewModel
             {
                 Textiles = MummyContext.Textiles
+                .Include(x => x.ColorTextiles)
+                .ThenInclude(x => x.Color)
+                .Include(x => x.TextilefunctionTextiles)
+                .ThenInclude(x => x.Textilefunction)
+                .Include(x => x.StructureTextiles)
+                .ThenInclude(x => x.Structure)
                 .OrderBy(x => x.Locale)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)

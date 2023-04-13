@@ -124,16 +124,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<ArtifactfagelgamousregisterBurialmain>(entity =>
             {
-                entity.HasKey(e => new { e.MainArtifactfagelgamousregisterid, e.MainBurialmainid })
+                entity.HasKey(e => new { e.Artifactfagelgamousregisterid, e.Burialmainid })
                     .HasName("main$artifactfagelgamousregister_burialmain_pkey");
 
                 entity.ToTable("artifactfagelgamousregister_burialmain");
 
-                entity.HasIndex(e => new { e.MainBurialmainid, e.MainArtifactfagelgamousregisterid }, "idx_main$artifactfagelgamousregister_burialmain");
+                entity.HasIndex(e => new { e.Burialmainid, e.Artifactfagelgamousregisterid }, "idx_main$artifactfagelgamousregister_burialmain");
 
-                entity.Property(e => e.MainArtifactfagelgamousregisterid).HasColumnName("main$artifactfagelgamousregisterid");
+                entity.Property(e => e.Artifactfagelgamousregisterid).HasColumnName("main$artifactfagelgamousregisterid");
 
-                entity.Property(e => e.MainBurialmainid).HasColumnName("main$burialmainid");
+                entity.Property(e => e.Burialmainid).HasColumnName("main$burialmainid");
             });
 
             modelBuilder.Entity<Artifactkomaushimregister>(entity =>
@@ -205,16 +205,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<ArtifactkomaushimregisterBurialmain>(entity =>
             {
-                entity.HasKey(e => new { e.MainArtifactkomaushimregisterid, e.MainBurialmainid })
+                entity.HasKey(e => new { e.Artifactkomaushimregisterid, e.Burialmainid })
                     .HasName("main$artifactqumoshimregistrar_burialmain_pkey");
 
                 entity.ToTable("artifactkomaushimregister_burialmain");
 
-                entity.HasIndex(e => new { e.MainBurialmainid, e.MainArtifactkomaushimregisterid }, "idx_main$artifactkomaushimregister_burialmain");
+                entity.HasIndex(e => new { e.Burialmainid, e.Artifactkomaushimregisterid }, "idx_main$artifactkomaushimregister_burialmain");
 
-                entity.Property(e => e.MainArtifactkomaushimregisterid).HasColumnName("main$artifactkomaushimregisterid");
+                entity.Property(e => e.Artifactkomaushimregisterid).HasColumnName("main$artifactkomaushimregisterid");
 
-                entity.Property(e => e.MainBurialmainid).HasColumnName("main$burialmainid");
+                entity.Property(e => e.Burialmainid).HasColumnName("main$burialmainid");
             });
 
             modelBuilder.Entity<Biological>(entity =>
@@ -569,16 +569,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<BurialmainTextile>(entity =>
             {
-                entity.HasKey(e => new { e.MainBurialmainid, e.MainTextileid })
+                entity.HasKey(e => new { e.Burialmainid, e.Textileid })
                     .HasName("main$burialmain_textile_pkey");
 
                 entity.ToTable("burialmain_textile");
 
-                entity.HasIndex(e => new { e.MainTextileid, e.MainBurialmainid }, "idx_main$burialmain_textile_main$textile_main$burialmain");
+                entity.HasIndex(e => new { e.Textileid, e.Burialmainid }, "idx_main$burialmain_textile_main$textile_main$burialmain");
 
-                entity.Property(e => e.MainBurialmainid).HasColumnName("main$burialmainid");
+                entity.Property(e => e.Burialmainid).HasColumnName("main$burialmainid");
 
-                entity.Property(e => e.MainTextileid).HasColumnName("main$textileid");
+                entity.Property(e => e.Textileid).HasColumnName("main$textileid");
             });
 
             modelBuilder.Entity<C14>(entity =>
@@ -649,16 +649,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<ColorTextile>(entity =>
             {
-                entity.HasKey(e => new { e.MainColorid, e.MainTextileid })
+                entity.HasKey(e => new { e.Colorid, e.Textileid })
                     .HasName("main$color_textile_pkey");
 
                 entity.ToTable("color_textile");
 
-                entity.HasIndex(e => new { e.MainTextileid, e.MainColorid }, "idx_main$color_textile_main$textile_main$color");
+                entity.HasIndex(e => new { e.Textileid, e.Colorid }, "idx_main$color_textile_main$textile_main$color");
 
-                entity.Property(e => e.MainColorid).HasColumnName("main$colorid");
+                entity.Property(e => e.Colorid).HasColumnName("main$colorid");
 
-                entity.Property(e => e.MainTextileid).HasColumnName("main$textileid");
+                entity.Property(e => e.Textileid).HasColumnName("main$textileid");
             });
 
             modelBuilder.Entity<Cranium>(entity =>
@@ -924,16 +924,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<StructureTextile>(entity =>
             {
-                entity.HasKey(e => new { e.MainStructureid, e.MainTextileid })
+                entity.HasKey(e => new { e.Structureid, e.Textileid })
                     .HasName("main$structure_textile_pkey");
 
                 entity.ToTable("structure_textile");
 
-                entity.HasIndex(e => new { e.MainTextileid, e.MainStructureid }, "idx_main$structure_textile_main$textile_main$structure");
+                entity.HasIndex(e => new { e.Textileid, e.Structureid }, "idx_main$structure_textile_main$textile_main$structure");
 
-                entity.Property(e => e.MainStructureid).HasColumnName("main$structureid");
+                entity.Property(e => e.Structureid).HasColumnName("main$structureid");
 
-                entity.Property(e => e.MainTextileid).HasColumnName("main$textileid");
+                entity.Property(e => e.Textileid).HasColumnName("main$textileid");
             });
 
             modelBuilder.Entity<Teammember>(entity =>
@@ -1005,16 +1005,16 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<TextilefunctionTextile>(entity =>
             {
-                entity.HasKey(e => new { e.MainTextilefunctionid, e.MainTextileid })
+                entity.HasKey(e => new { e.Textilefunctionid, e.Textileid })
                     .HasName("main$textilefunction_textile_pkey");
 
                 entity.ToTable("textilefunction_textile");
 
-                entity.HasIndex(e => new { e.MainTextileid, e.MainTextilefunctionid }, "idx_main$textilefunction_textile");
+                entity.HasIndex(e => new { e.Textileid, e.Textilefunctionid }, "idx_main$textilefunction_textile");
 
-                entity.Property(e => e.MainTextilefunctionid).HasColumnName("main$textilefunctionid");
+                entity.Property(e => e.Textilefunctionid).HasColumnName("main$textilefunctionid");
 
-                entity.Property(e => e.MainTextileid).HasColumnName("main$textileid");
+                entity.Property(e => e.Textileid).HasColumnName("main$textileid");
             });
 
             modelBuilder.Entity<Yarnmanipulation>(entity =>

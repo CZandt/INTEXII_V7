@@ -16,5 +16,10 @@ namespace Identity.Models.Mummy
         public DateTime? Sampledate { get; set; }
         public DateTime? Photographeddate { get; set; }
         public string Direction { get; set; }
+
+        public ICollection<BurialmainTextile> BurialmainTextiles { get; set; }
+        public ICollection<ColorTextile> ColorTextiles { get; set; }
+        public ICollection<TextilefunctionTextile> TextilefunctionTextiles { get; set; }
+        public ICollection<StructureTextile> StructureTextiles { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Identity.Models.Mummy
         public long Id { get; set; }
         public string Value { get; set; }
         public int? Textilefunctionid { get; set; }
+
+        public ICollection<TextilefunctionTextile> TextilefunctionTextiles { get; set; }
     }
 }
