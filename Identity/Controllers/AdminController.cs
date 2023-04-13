@@ -58,7 +58,7 @@ namespace Identity.Controllers
                 }*/
 
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                 {
                     foreach (IdentityError error in result.Errors)
@@ -75,7 +75,7 @@ namespace Identity.Controllers
             if (user != null)
                 return View(user);
             else
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexRoles");
         }
 
         [Authorize(Roles = "Admin")]
@@ -99,7 +99,7 @@ namespace Identity.Controllers
                 {
                     IdentityResult result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
-                        return RedirectToAction("Index");
+                        return RedirectToAction("IndexRoles");
                     else
                         Errors(result);
                 }
@@ -124,7 +124,7 @@ namespace Identity.Controllers
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                     Errors(result);
             }

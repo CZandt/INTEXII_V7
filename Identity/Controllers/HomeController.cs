@@ -30,33 +30,6 @@ namespace Identity.Controllers
             return View();
         }
 
-        //public IActionResult Summary(string filter, int pageNum = 1)
-        //{
-        //    int pageSize = 20;
-
-        //    var x = new RecordsViewModel
-        //    {
-        //        Burialmains = mummyContext.Burialmains
-        //        .Where(x => x.Headdirection == filter | filter == null)
-        //        .OrderBy(x => x.Preservation)
-        //        .Skip((pageNum - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .ToList(),
-
-        //        PageInfo = new PageInfo
-        //        {
-        //            TotalNumRecords =
-        //                (filter == null ?
-        //                mummyContext.Burialmains.Count() :
-        //                mummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
-        //            RecordsPerPage = pageSize,
-        //            CurrentPage = pageNum
-        //        }
-        //    };
-
-        //    return View(x);
-        //}
-
         [HttpGet]
         public IActionResult AddData()
         {
