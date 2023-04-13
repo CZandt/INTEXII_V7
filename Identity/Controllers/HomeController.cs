@@ -30,12 +30,14 @@ namespace Identity.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult AddData()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
         public IActionResult AddData(Burialmain burialmain)
         {
@@ -53,6 +55,7 @@ namespace Identity.Controllers
             
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult Edit (long id)
         {
@@ -61,6 +64,7 @@ namespace Identity.Controllers
             return View("AddData", data);
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpPost]
         public IActionResult Edit (Burialmain burialmain)
         {
@@ -77,6 +81,7 @@ namespace Identity.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin, Researcher")]
         [HttpGet]
         public IActionResult Delete (long id)
         {
@@ -85,6 +90,7 @@ namespace Identity.Controllers
             return View(data);
         }
 
+        [Authorize(Roles = "Admin,Researcher")]
         [HttpPost]
         public IActionResult Delete (Burialmain burialmain)
         {

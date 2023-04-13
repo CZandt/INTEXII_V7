@@ -23,8 +23,10 @@ namespace Identity.Controllers
             return View("Index",userManager.Users);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() => View();
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {

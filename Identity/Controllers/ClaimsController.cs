@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ClaimsController : Controller
     {
         private UserManager<AppUser> userManager;
