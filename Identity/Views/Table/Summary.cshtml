@@ -10,38 +10,65 @@
     <partial name="TableNav"/>
 </div>
 
-<input type="text" id="searchBar" placeholder="Search...">
 <div>
-    <vc:filter></vc:filter>
+    <input type="text" id="searchBar" placeholder="Search...">
+</div>
+<div>
+    <br />
+    <ul class="nav">
+        <li class="nav-item">
+            <vc:filter></vc:filter>
+        </li>
+
+        <li class="nav-item ml-auto">
+            <a asp-controller="Table" asp-action="Summary" asp-route-filter="" asp-route-pageNum="1" class="btn btn-secondary">Clear Filters</a>
+        </li>
+
+        @if (User.IsInRole("Researcher") || (User.IsInRole("Admin")))
+        {
+        <li class="nav-item ml-auto">
+            <br />
+            <a asp-controller="Home" asp-action="AddData" class="btn btn-secondary">Add a Record</a>
+        </li>
+
+        }
+
+    </ul>
+    
+    
 </div>
 <br />
-<table class="table table-sm table-bordered">
+<table class="table table-sm table-bordered table-hover">
     <tbody id="myTable">
         <tr>
             
-            <th>Burial ID</th>
-            <th>Sex</th>
-            <th>Burial Depth</th>
-            <th>Age at Death</th>
-            <th>Head Direction</th>
-            <th>Hair Color</th>
-            <th>Face Bundle</th>
-            <th>Details</th>
+            <th class="text-center">Burial ID</th>
+            <th class="text-center">Sex</th>
+            <th class="text-center">Burial Depth</th>
+            <th class="text-center">Age at Death</th>
+            <th class="text-center">Head Direction</th>
+            <th class="text-center">Hair Color</th>
+            <th class="text-center">Face Bundle</th>
+            <th class="text-center">Details</th>
         </tr>
 
         @foreach (Burialmain x in Model.Burialmains)
         {
             <tr>
-                <td>@x.Squarenorthsouth @x.Northsouth @x.Squareeastwest @x.Eastwest @x.Area @x.Burialnumber</td>
-                <td>@x.Sex</td>
-                <td>@x.Depth</td>
-                <td>@x.Ageatdeath</td>
-                <td>@x.Headdirection</td>
-                <td>@x.Haircolor</td>
-                <td>@x.Facebundles</td>
-                <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
-                <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
-                <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
+                <td class="text-center">@x.Squarenorthsouth @x.Northsouth @x.Squareeastwest @x.Eastwest @x.Area @x.Burialnumber</td>
+                <td class="text-center">@x.Sex</td>
+                <td class="text-center">@x.Depth</td>
+                <td class="text-center">@x.Ageatdeath</td>
+                <td class="text-center">@x.Headdirection</td>
+                <td class="text-center">@x.Haircolor</td>
+                <td class="text-center">@x.Facebundles</td>
+                <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
+                @if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
+                {
+                    <td class="text-center"><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td class="text-center"><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
+                }
+                
             </tr>
         }
     </tbody>

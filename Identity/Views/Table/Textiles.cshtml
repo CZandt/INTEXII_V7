@@ -13,48 +13,48 @@
 <table class="table table-sm table-bordered">
     <tr>
         
-        <th>Direction</th>
-        <th>Locale</th>
-        <th>Description</th>
-        <th>Estimated Period</th>
-        <th>Photographed Date</th>
-        <th>Sampledate</th>
-        <th>Colors</th>
-        <th>Function</th>
-        <th>Structure</th>
-        <th>Details</th>
+        <th class="text-center">Direction</th>
+        <th class="text-center">Locale</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Estimated Period</th>
+        <th class="text-center">Photographed Date</th>
+        <th class="text-center">Sampledate</th>
+        <th class="text-center">Colors</th>
+        <th class="text-center">Function</th>
+        <th class="text-center">Structure</th>
+        <th class="text-center">Details</th>
     </tr>
 
     @foreach (var x in Model.Textiles)
     {
 <tr>
     
-    <td>@x.Direction </td>
-    <td>@x.Locale</td>
-    <td>@x.Description</td>
-    <td>@x.Estimatedperiod</td>
-    <td>@x.Photographeddate</td>
-    <td>@x.Sampledate</td>
-    
-    <td>
+    <td class="text-center">@x.Direction </td>
+    <td class="text-center">@x.Locale</td>
+    <td class="text-center">@x.Description</td>
+    <td class="text-center">@x.Estimatedperiod</td>
+    <td class="text-center">@x.Photographeddate</td>
+    <td class="text-center">@x.Sampledate</td>
+
+    <td class="text-center">
         @foreach (var color in x.ColorTextiles)
         {
             <p>@Html.DisplayNameFor(model => color.Color.Value)</p>
         }
     </td>
-    <td>
+    <td class="text-center">
         @foreach (var function in x.TextilefunctionTextiles)
         {
             <p>@Html.DisplayNameFor(model => function.Textilefunction.Value)</p>
         }
     </td>
-    <td>
+    <td class="text-center">
         @foreach (var structure in x.StructureTextiles)
         {
             <p>@Html.DisplayNameFor(model => structure.Structure.Value)</p>
         }
     </td>
-    <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
+    <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
 </tr>
     }
 </table>

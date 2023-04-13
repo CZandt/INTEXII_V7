@@ -19,7 +19,7 @@ namespace Identity.Controllers
 
         public IActionResult Summary(string filter, int pageNum = 1)
         {
-            int pageSize = 20;
+            int pageSize = 30;
 
             var x = new RecordsViewModel
             {
