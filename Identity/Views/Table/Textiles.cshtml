@@ -12,7 +12,7 @@
 
 <table class="table table-sm table-bordered">
     <tr>
-        <th>Details</th>
+        
         <th>Direction</th>
         <th>Locale</th>
         <th>Description</th>
@@ -22,18 +22,20 @@
         <th>Colors</th>
         <th>Function</th>
         <th>Structure</th>
+        <th>Details</th>
     </tr>
 
     @foreach (var x in Model.Textiles)
     {
 <tr>
-    <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
+    
     <td>@x.Direction </td>
     <td>@x.Locale</td>
     <td>@x.Description</td>
     <td>@x.Estimatedperiod</td>
     <td>@x.Photographeddate</td>
     <td>@x.Sampledate</td>
+    
     <td>
         @foreach (var color in x.ColorTextiles)
         {
@@ -52,6 +54,7 @@
             <p>@Html.DisplayNameFor(model => structure.Structure.Value)</p>
         }
     </td>
+    <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
 </tr>
     }
 </table>

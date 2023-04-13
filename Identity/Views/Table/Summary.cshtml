@@ -4,22 +4,21 @@
 
 @model RecordsViewModel
 
-<h1>Summary Proof of Concept</h1>
+<h1>Burial Summary</h1>
 
 <div>
     <partial name="TableNav"/>
 </div>
 
 <input type="text" id="searchBar" placeholder="Search...">
-
 <div>
     <vc:filter></vc:filter>
 </div>
-
+<br />
 <table class="table table-sm table-bordered">
     <tbody id="myTable">
         <tr>
-            <th>Details</th>
+            
             <th>Burial ID</th>
             <th>Sex</th>
             <th>Burial Depth</th>
@@ -27,12 +26,12 @@
             <th>Head Direction</th>
             <th>Hair Color</th>
             <th>Face Bundle</th>
+            <th>Details</th>
         </tr>
 
         @foreach (Burialmain x in Model.Burialmains)
         {
             <tr>
-                <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
                 <td>@x.Squarenorthsouth @x.Northsouth @x.Squareeastwest @x.Eastwest @x.Area @x.Burialnumber</td>
                 <td>@x.Sex</td>
                 <td>@x.Depth</td>
@@ -40,6 +39,7 @@
                 <td>@x.Headdirection</td>
                 <td>@x.Haircolor</td>
                 <td>@x.Facebundles</td>
+                <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
                 <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
                 <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
             </tr>
