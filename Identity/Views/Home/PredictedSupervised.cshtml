@@ -24,11 +24,11 @@
                 <div class="card-header">
                     @if (Model.PredictedValue == "W")
             {
-                <h2>Predicted Head Direction : West</h2>
+                <h2>Predicted Head Direction - West</h2>
             } 
                     @if (Model.PredictedValue == "E")
             {
-                <h2>Predicted Head Direction : East</h2>
+                <h2>Predicted Head Direction - East</h2>
             }
                 </div>
 
@@ -37,17 +37,39 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card-body">
-                                    <p>The logistic regression model predicted a head direction of @ViewData["Direction"] </p>
+                                    
+                                    @if (Model.PredictedValue == "W")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/WestFacingHead.jpg">
+                                    }
+                                    
+
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card-body">
-                                    <p>What the frick beans bro</p>
+                                    @if (Model.PredictedValue == "W")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/1200px-Compass_Rose_English_West.svg.png">
+                                    }
+                                    @if (Model.PredictedValue == "E")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/1200px-Compass_Rose_English_East.svg.png">
+                                    }
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <p class="text-center">Using the inputs provided the logistic regression model predicted a head direction of @ViewData["Direction"] </p>
+                            </div>
+                   
+                        </div>
                     </div>
                     
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Home" asp-action="Supervised" class="btn btn-secondary">Make Another Prediction</a>
                 </div>
             </div>
         </div>
