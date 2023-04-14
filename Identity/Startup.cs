@@ -38,7 +38,7 @@ namespace Identity
 
             });
 
-            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlite(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:DefaultConnection"])); ;
             services.AddDbContext<ebdbContext>(options => options.UseNpgsql(Configuration["ConnectionStrings:MummyConnection"]));
            
             services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
@@ -118,25 +118,6 @@ namespace Identity
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //    name:"filterpage",
-                //    pattern: "{query}/Page{pageNum}",
-                //    new { Controller = "Table", action = "Summary" });
-
-                ////endpoints.MapControllerRoute(
-                ////    name: "Paging",
-                ////    pattern: "Page{pageNum}",
-                ////    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
-
-                //endpoints.MapControllerRoute(
-                //    name: "filter",
-                //    pattern:"{query}",
-                //    new { Controller = "Table", action = "Summary", pageNum = 1 });
-
-                //endpoints.MapControllerRoute(
-                //    name: "Paging",
-                //    pattern: "Page{pageNum}",
-                //    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "default",

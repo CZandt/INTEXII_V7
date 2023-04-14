@@ -21,7 +21,7 @@
                 <tr>
                     <td>@role.Id</td>
                     <td>@role.Name</td>
-                    <td i-role="@role.Id"></td>
+                    @*<td i-role="@role.Id"></td>*@
                     <td class="text-center"><a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@role.Id">Update</a></td>
                     <td class="text-center">
                         <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#@role.Name">
