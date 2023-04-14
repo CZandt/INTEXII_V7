@@ -68,28 +68,11 @@
                                     <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexUsers">All User</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="IndexRoles">All Roles</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="Create">Create Role</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Claims" asp-action="IndexClaims">All Claims</a>
+              
                                 </div>
                             </li>
                         }
 
-                        @if (User.IsInRole("Super Admin"))
-                        {
-                            <!--SUPER ADMIN-->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="Project">Policy Authorization</a>
-                            </li>
-                            <!--SUPER ADMIN-->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="TomFiles">Tom Files</a>
-                            </li>
-                            <!--SUPER ADMIN-->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Claims" asp-action="PrivateAccess">Private Accesss</a>
-                            </li>
-
-
-                        }
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item ml-auto">

@@ -89,10 +89,6 @@ namespace Identity
              
             services.AddSingleton<InferenceSession>(
                 new InferenceSession("head_directioon_model.onnx"));
-            /*services.Configure<IdentityOptions>(opts =>
-            {
-                opts.SignIn.RequireConfirmedEmail = true;
-            });*/
 
             services.AddControllersWithViews();
             services.AddRazorPages();
