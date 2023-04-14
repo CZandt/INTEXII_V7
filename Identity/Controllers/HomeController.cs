@@ -149,5 +149,9 @@ namespace Identity.Controllers
         {
             return View();
         }
+        public IActionResult EgyptCompliance()
+        {
+            return View();
+        }
     }
 }
