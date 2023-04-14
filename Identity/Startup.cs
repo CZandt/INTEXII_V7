@@ -122,23 +122,25 @@ namespace Identity
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("filterpage",
-                    "{filter}/Page{pageNum}",
-                    new { Controller = "Table", action = "Summary" });
+                //endpoints.MapControllerRoute(
+                //    name:"filterpage",
+                //    pattern: "{query}/Page{pageNum}",
+                //    new { Controller = "Table", action = "Summary" });
 
-                endpoints.MapControllerRoute(
-                    name: "Paging",
-                    pattern: "Page{pageNum}",
-                    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
+                ////endpoints.MapControllerRoute(
+                ////    name: "Paging",
+                ////    pattern: "Page{pageNum}",
+                ////    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
 
-                endpoints.MapControllerRoute("filter",
-                    "{filter}",
-                    new { Controller = "Table", action = "Summary", pageNum = 1 });
+                //endpoints.MapControllerRoute(
+                //    name: "filter",
+                //    pattern:"{query}",
+                //    new { Controller = "Table", action = "Summary", pageNum = 1 });
 
-                endpoints.MapControllerRoute(
-                    name: "Paging",
-                    pattern: "Page{pageNum}",
-                    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
+                //endpoints.MapControllerRoute(
+                //    name: "Paging",
+                //    pattern: "Page{pageNum}",
+                //    defaults: new { Controller = "Table", action = "Summary", pageNum = 1 });
 
                 endpoints.MapControllerRoute(
                     name: "default",

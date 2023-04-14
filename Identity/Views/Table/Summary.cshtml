@@ -1,5 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Summary";
+
+    //Janky spaghetti code for pagination before max
+    //ViewData["PageM2Ref"] = "Page" + (Model.PageInfo.CurrentPage - 2).ToString();
+    //ViewData["PageM2Text"] = Model.PageInfo.CurrentPage - 2;
+
+    //ViewData["PageM1Ref"] = "Page" + (Model.PageInfo.CurrentPage - 1).ToString();
+    //ViewData["PageM1Text"] = Model.PageInfo.CurrentPage - 1;
+
+    //ViewData["CurrentPage"] = "Page" + Model.PageInfo.CurrentPage.ToString();
+
+    //ViewData["PageP1Ref"] = "Page" + (Model.PageInfo.CurrentPage + 1).ToString();
+    //ViewData["PageP1Text"] = Model.PageInfo.CurrentPage + 1;
+
+    //ViewData["PageP2Ref"] = "Page" + (Model.PageInfo.CurrentPage + 2).ToString();
+    //ViewData["PageP2Text"] = Model.PageInfo.CurrentPage + 2;
+
+    ////Pagination for max
+    //ViewData["PageMaxM4Ref"] = "Page" + (Model.PageInfo.TotalPages - 4).ToString();
+    //ViewData["PageMaxM4Text"] = Model.PageInfo.TotalPages - 4;
+
+    //ViewData["PageMaxM3Ref"] = "Page" + (Model.PageInfo.TotalPages - 3).ToString();
+    //ViewData["PageMaxM3Text"] = Model.PageInfo.TotalPages - 3;
+
+    //ViewData["PageMaxM2Ref"] = "Page" + (Model.PageInfo.TotalPages - 2).ToString();
+    //ViewData["PageMaxM2Text"] = Model.PageInfo.TotalPages - 2;
+
+    //ViewData["PageMaxM1Ref"] = "Page" + (Model.PageInfo.TotalPages - 1).ToString();
+    //ViewData["PageMaxM1Text"] = Model.PageInfo.TotalPages - 1;
+
+    //ViewData["PageMaxRef"] = "Page" + (Model.PageInfo.TotalPages).ToString();
+    //ViewData["PageMaxText"] = Model.PageInfo.TotalPages;
+
+    ViewData["PageMaxRef"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
+    ViewData["PageMaxText"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
 }
 
 @model RecordsViewModel
@@ -7,17 +41,31 @@
 <h1>Burial Summary</h1>
 
 <div>
-    <partial name="TableNav"/>
+    <partial name="TableNav" />
 </div>
- 
-<div>
-    <input type="text" id="searchBar" placeholder="Search...">
-</div>
+
 <div>
     <br />
     <ul class="nav">
-        <li class="nav-item">
-            <vc:filter></vc:filter>
+        <li>
+            <form asp-controller="Table" asp-action="Summary" method="post">
+                <select name="field">
+                    <option value="Squarenorthsouth">Square North/South</option>
+                    <option value="Northsouth">North/South</option>
+                    <option value="Squareeastwest">Square East/West</option>
+                    <option value="Northsouth">East/West</option>
+                    <option value="Area">Area</option>
+                    <option value="Burialnumber">Burial Number</option>
+                    <option value="Sex">Sex</option>
+                    <option value="Depth">Burial Depth</option>
+                    <option value="Ageatdeath">Age at Death</option>
+                    <option value="Headdirection">Head Direction</option>
+                    <option value="Haircolor">Hair Color</option>
+                    <option value="Facebundles">Face Bundles</option>
+                </select>
+                <input type="text" name="query" id="searchBar" placeholder="Filter results" />
+                <button type="submit" class="btn btn-info">Search</button>
+            </form>
         </li>
 
         <li class="nav-item ml-auto">
@@ -26,22 +74,22 @@
 
         @if (User.IsInRole("Researcher") || (User.IsInRole("Admin")))
         {
-        <li class="nav-item ml-auto">
-            <br />
-            <a asp-controller="Home" asp-action="AddData" class="btn btn-secondary">Add a Record</a>
-        </li>
+            <li class="nav-item ml-auto">
+                <br />
+                <a asp-controller="Home" asp-action="AddData" class="btn btn-secondary">Add a Record</a>
+            </li>
 
         }
 
     </ul>
-    
-    
+
+
 </div>
 <br />
 <table class="table table-sm table-bordered table-hover">
     <tbody id="myTable">
         <tr>
-            
+
             <th class="text-center">Burial ID</th>
             <th class="text-center">Sex</th>
             <th class="text-center">Burial Depth</th>
@@ -68,10 +116,68 @@
                     <td class="text-center"><a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
                     <td class="text-center"><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
                 }
-                
+
             </tr>
         }
     </tbody>
 </table>
 
-<div page-model="@Model.PageInfo" page-action="Summary"></div>
+@if (Model.Filter == false)
+{
+    <a href="Summary?pageNum=1">&lt;&lt;</a>
+
+    <div page-model="@Model.PageInfo" page-action="Summary" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+
+    <a href="@ViewData["PageMaxRef"]">>></a>
+}
+
+
+
+
+@*@if (@Model.PageInfo.CurrentPage == 1)
+    {
+    <div>
+        <a href="Page1">1</a>
+        <a href="Page2">2</a>
+        <a href="Page3">3</a>
+        <a href="Page4">4</a>
+        <a href="Page5">5</a>
+        <a href="@ViewData["PageMaxRef"]">>></a>
+    </div>
+    }
+    else if (@Model.PageInfo.CurrentPage == 2)
+    {
+    <div>
+        <a href="Page1">&lt;&lt;</a>
+        <a href="Page1">1</a>
+        <a href="Page2">2</a>
+        <a href="Page3">3</a>
+        <a href="Page4">4</a>
+        <a href="Page5">5</a>
+        <a href="@ViewData["PageMaxRef"]">>></a>
+    </div>
+    }
+    else if ((Model.PageInfo.CurrentPage - 4) >= (Model.PageInfo.TotalPages - 4))
+    {
+    <div>
+        <a href="Page1">&lt;&lt;</a>
+        <a href="@ViewData["PageMaxM4Ref"]">@ViewData["PageMaxM4Text"]</a>
+        <a href="@ViewData["PageMaxM3Ref"]">@ViewData["PageMaxM3Text"]</a>
+        <a href="@ViewData["PageMaxM2Ref"]">@ViewData["PageMaxM2Text"]</a>
+        <a href="@ViewData["PageMaxM1Ref"]">@ViewData["PageMaxM1Text"]</a>
+        <a href="@ViewData["PageMaxRef"]">@ViewData["PageMaxText"]</a>
+    </div>
+    }
+    else if ((Model.PageInfo.CurrentPage > 2) & (Model.PageInfo.CurrentPage < (Model.PageInfo.TotalPages - 4))) //needs work
+    {
+    <div>
+        <a href="Page1">&lt;&lt;</a>
+        <a href="@ViewData["PageM2Ref"]">@ViewData["PageM2Text"]</a>
+        <a href="@ViewData["PageM1Ref"]">@ViewData["PageM1Text"]</a>
+        <a href="@ViewData["CurrentPage"]">@{@Model.PageInfo.CurrentPage}</a>
+        <a href="@ViewData["PageP1Ref"]">@ViewData["PageP1Text"]</a>
+        <a href="@ViewData["PageP2Ref"]">@ViewData["PageP2Text"]</a>
+        <a href="@ViewData["PageMaxRef"]">>></a>
+    </div>
+    }*@
