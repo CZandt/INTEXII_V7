@@ -44,7 +44,7 @@ namespace Identity.Controllers
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
 
                 if (result.Succeeded)
-                    return RedirectToAction("IndexRoles");
+                    return RedirectToAction("IndexUsers");
                 else
                 {
                     foreach (IdentityError error in result.Errors)
@@ -61,7 +61,7 @@ namespace Identity.Controllers
             if (user != null)
                 return View(user);
             else
-                return RedirectToAction("IndexRoles");
+                return RedirectToAction("IndexUsers");
         }
 
         [Authorize(Roles = "Admin")]
@@ -85,7 +85,7 @@ namespace Identity.Controllers
                 {
                     IdentityResult result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
-                        return RedirectToAction("IndexRoles");
+                        return RedirectToAction("IndexUsers");
                     else
                         Errors(result);
                 }
@@ -110,7 +110,7 @@ namespace Identity.Controllers
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
                 if (result.Succeeded)
-                    return RedirectToAction("IndexRoles");
+                    return RedirectToAction("IndexUsers");
                 else
                     Errors(result);
             }
