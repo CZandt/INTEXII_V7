@@ -22,14 +22,17 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Headdirection">Head Direction</label>
-                <br />
-                <select asp-for="Headdirection">
-                    <option value="N">North</option>
-                    <option value="S">South</option>
-                    <option value="E">East</option>
-                    <option value="W">West</option>
-                </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Headdirection">Head Direction</label>
+                    </div>
+                    <select class="custom-select" asp-for="Headdirection">
+                        <option value="E">East</option>
+                        <option value="W">West</option>
+                    </select>
+                </div>
+               
+
             </div>
 
             <div class="form-group">
@@ -38,33 +41,46 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Wrapping">Wrapping</label>
-                <br />
-                <select asp-for="Wrapping">
-                    <option value="B">B</option>
-                    <option value="H">H</option>
-                    <option value="W">W</option>
-                </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Wrapping">Wrapping</label>
+                    </div>
+                    <select class="custom-select" asp-for="Wrapping">
+                        <option value="B">B</option>
+                        <option value="H">H</option>
+                        <option value="W">W</option>
+                    </select>
+                </div>
+
+
             </div>
 
             <div class="form-group">
-                <label asp-for="Sex">Sex</label>
-                <br />
-                <select asp-for="Sex">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Sex">Sex</label>
+                    </div>
+                    <select class="custom-select" asp-for="Sex">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
             </div>
 
             <div class="form-group">
-                <label asp-for="Ageatdeath">Ageatdeath</label>
-                <br />
-                <select asp-for="Ageatdeath">
-                    <option value="A">A</option>
-                    <option value="N">N</option>
-                    <option value="I">I</option>
-                    <option value="C">C</option>
-                </select>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Ageatdeath">Age at death</label>
+                    </div>
+                    <select class="custom-select" asp-for="Ageatdeath">
+                        <option value="A">A</option>
+                        <option value="N">N</option>
+                        <option value="I">I</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+
             </div>
 
             <div class="form-group">

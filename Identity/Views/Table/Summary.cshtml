@@ -1,37 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Summary";
 
-    //Janky spaghetti code for pagination before max
-    //ViewData["PageM2Ref"] = "Page" + (Model.PageInfo.CurrentPage - 2).ToString();
-    //ViewData["PageM2Text"] = Model.PageInfo.CurrentPage - 2;
-
-    //ViewData["PageM1Ref"] = "Page" + (Model.PageInfo.CurrentPage - 1).ToString();
-    //ViewData["PageM1Text"] = Model.PageInfo.CurrentPage - 1;
-
-    //ViewData["CurrentPage"] = "Page" + Model.PageInfo.CurrentPage.ToString();
-
-    //ViewData["PageP1Ref"] = "Page" + (Model.PageInfo.CurrentPage + 1).ToString();
-    //ViewData["PageP1Text"] = Model.PageInfo.CurrentPage + 1;
-
-    //ViewData["PageP2Ref"] = "Page" + (Model.PageInfo.CurrentPage + 2).ToString();
-    //ViewData["PageP2Text"] = Model.PageInfo.CurrentPage + 2;
-
-    ////Pagination for max
-    //ViewData["PageMaxM4Ref"] = "Page" + (Model.PageInfo.TotalPages - 4).ToString();
-    //ViewData["PageMaxM4Text"] = Model.PageInfo.TotalPages - 4;
-
-    //ViewData["PageMaxM3Ref"] = "Page" + (Model.PageInfo.TotalPages - 3).ToString();
-    //ViewData["PageMaxM3Text"] = Model.PageInfo.TotalPages - 3;
-
-    //ViewData["PageMaxM2Ref"] = "Page" + (Model.PageInfo.TotalPages - 2).ToString();
-    //ViewData["PageMaxM2Text"] = Model.PageInfo.TotalPages - 2;
-
-    //ViewData["PageMaxM1Ref"] = "Page" + (Model.PageInfo.TotalPages - 1).ToString();
-    //ViewData["PageMaxM1Text"] = Model.PageInfo.TotalPages - 1;
-
-    //ViewData["PageMaxRef"] = "Page" + (Model.PageInfo.TotalPages).ToString();
-    //ViewData["PageMaxText"] = Model.PageInfo.TotalPages;
-
     ViewData["PageMaxRef"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
     ViewData["PageMaxText"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
 }

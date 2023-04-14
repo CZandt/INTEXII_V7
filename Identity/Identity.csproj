@@ -28,4 +28,8 @@
     <Folder Include="Models\Mummy\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\head_directioon_model.onnx" />
+  </ItemGroup>
+
 </Project>

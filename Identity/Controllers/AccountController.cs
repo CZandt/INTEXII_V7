@@ -39,7 +39,7 @@ namespace Identity.Controllers
                 if (appUser != null)
                 {
                     await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, true); //Changed to true
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, true);
 
                     if (result.Succeeded)
                         return Redirect(login.ReturnUrl ?? "/");
@@ -49,16 +49,8 @@ namespace Identity.Controllers
                         return RedirectToAction("LoginTwoStep", new { appUser.Email, login.ReturnUrl });
                     }
 
-                    // Uncomment Email confirmation https://www.yogihosting.com/aspnet-core-identity-email-confirmation/
-                    /*bool emailStatus = await userManager.IsEmailConfirmedAsync(appUser);
-                    if (emailStatus == false)
-                    {
-                        ModelState.AddModelError(nameof(login.Email), "Email is unconfirmed, please confirm it first");
-                    }*/
-
-                    // Uncomment user lockout https://www.yogihosting.com/aspnet-core-identity-user-lockout/
-                    /*if (result.IsLockedOut)
-                        ModelState.AddModelError("", "Your account is locked out. Kindly wait for 10 minutes and try again");*/
+                    if (result.IsLockedOut)
+                        ModelState.AddModelError("", "Your account is locked out. Kindly wait for 10 minutes and try again");
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
             }

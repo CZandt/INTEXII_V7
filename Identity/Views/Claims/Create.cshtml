@@ -4,11 +4,11 @@
 
 <div class="card">
     <div class="card-header">
-        <h1 class="bg-info text-white">Create Claim</h1>
+        <h1>Create Claim</h1>
         
         <div asp-validation-summary="All" class="text-danger"></div>
     </div>
-    <div class="body">
+    <div class="card-body">
         
         <form method="post">
             <div class="form-group">
@@ -20,8 +20,9 @@
                 <input name="ClaimValue" class="form-control" />
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-action="IndexClaims" class="btn btn-secondary">Back</a>
         </form>
-        <a asp-action="IndexClaims" class="btn btn-secondary">Back</a>
+
     </div>
 </div>
 
