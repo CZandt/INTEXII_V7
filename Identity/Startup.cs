@@ -78,6 +78,9 @@ namespace Identity
                 opts.Lockout.AllowedForNewUsers = true;
                 opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 opts.Lockout.MaxFailedAccessAttempts = 3;
+                opts.Password.RequiredLength = 8;
+                opts.Password.RequireLowercase = true;
+                opts.Password.RequireNonAlphanumeric = true;
             });
 
             services.AddHsts(options =>
