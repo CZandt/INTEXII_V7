@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Identity</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
@@ -11,6 +11,32 @@
             margin: 20px 0;
         }
     </style>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#searchBar").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <meta http-equiv="Content-Security-Policy"
+          content="base-uri 'self';
+               default-src 'self';
+               img-src data: 'self';
+               object-src 'none';
+               script-src https://stackpath.bootstrapcdn.com/
+                          'self'
+                          'sha256-v8v3RKRPmN4odZ1CWM5gw80QKPCCWMcpNeOmimNL2AA='
+                          'unsafe-eval';
+               style-src https://stackpath.bootstrapcdn.com/
+                         'self'
+                         'unsafe-inline';
+               upgrade-insecure-requests;">
+
 </head>
 <body>
     <header>
@@ -23,24 +49,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-
-
-
-
-
-                        <!--IF UN AUTHENTICATED-->
-                        @if (!(User?.Identity?.IsAuthenticated) ?? false)
-                        {
-                            <!-- Commented out becuase the normal user doesnt use an account
-
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Create">Create User</a>
-        </li>
-
-
-        -->
-
-                        }
 
 
                         <li class="nav-item">
@@ -70,7 +78,7 @@
                                     <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="IndexUsers">All User</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="IndexRoles">All Roles</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Role" asp-action="Create">Create Role</a>
-
+                                    <a class="dropdown-item" asp-area="" asp-controller="Claims" asp-action="IndexClaims">All Claims</a>
                                 </div>
                             </li>
                         }
@@ -95,7 +103,7 @@
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             <li class="nav-item ml-auto">
-                                <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
+                                <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-danger">Logout</a>
                             </li>
 
                         }
@@ -123,7 +131,7 @@
     <footer class="border-top footer text-muted">
         <partial name="_CookieConsentPartial" />
         <div class="container">
-            &copy; 2022 - BYU Egypt INTEX - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - BYU Egypt INTEX - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

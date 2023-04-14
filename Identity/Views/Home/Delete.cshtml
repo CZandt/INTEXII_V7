@@ -1,16 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Delete Application";
+    ViewData["Title"] = "Delete Burial";
 }
 
 @model Burialmain
 
-<h1>Confirm data deletion</h1>
 
-<h2>Are you sure you want to delete burial record with ID: @Model.Id?</h2>
+<div class="card">
+    <div class="card-header">
+        <h1>Confirm data deletion</h1>
+    </div>
+    <div class="card-body">
+        <h4>Are you sure you want to delete burial record with ID: @Model.Id?</h4>
+    </div>
+    <div class="card-footer">
+        <form method="post" asp-controller="Home" asp-action="Delete">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-controller="Table" asp-action="Summary" class="btn btn-primary">Cancel</a>
 
-<form method="post" asp-controller="Home" asp-action="Delete">
-    <button type="submit" class="btn-danger">Delete</button>
-    <a asp-controller="Table" asp-action="Summary" class="btn-primary">Cancel</a>
+            <input type="hidden" asp-for="Id" />
+        </form>
+    </div>
+</div>
 
-    <input type="hidden" asp-for="Id" />
-</form>
+
+
+

@@ -37,7 +37,7 @@ namespace Identity.Controllers
             {
                 IdentityResult result = await roleManager.CreateAsync(new IdentityRole(name));
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                     Errors(result);
             }
@@ -104,7 +104,7 @@ namespace Identity.Controllers
             {
                 IdentityResult result = await roleManager.DeleteAsync(role);
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                     Errors(result);
             }

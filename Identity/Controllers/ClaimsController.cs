@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Identity.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ClaimsController : Controller
     {
         private UserManager<AppUser> userManager;
@@ -20,7 +20,7 @@ namespace Identity.Controllers
             authService = auth;
         }
 
-        public IActionResult Index() => View(User?.Claims);
+        public IActionResult IndexClaims() => View("Index",User?.Claims);
 
         public IActionResult Create() => View();
 
@@ -33,7 +33,7 @@ namespace Identity.Controllers
             IdentityResult result = await userManager.AddClaimAsync(user, claim);
 
             if (result.Succeeded)
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexClaims");
             else
                 Errors(result);
             return View();
@@ -52,7 +52,7 @@ namespace Identity.Controllers
             IdentityResult result = await userManager.RemoveClaimAsync(user, claim);
 
             if (result.Succeeded)
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexClaims");
             else
                 Errors(result);
 

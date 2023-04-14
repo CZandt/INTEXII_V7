@@ -113,8 +113,8 @@
                 <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
                 {
-                    <td class="text-center"><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
-                    <td class="text-center"><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
+                    <td class="text-center"><a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td class="text-center"><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
                 }
 
             </tr>
