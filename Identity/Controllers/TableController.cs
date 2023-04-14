@@ -49,35 +49,87 @@ namespace Identity.Controllers
         }
 
         [HttpPost]
-        public IActionResult Summary(string field = "Area", string query = "", int pageNum = 1)
+        public IActionResult Summary(string field = "Area", string query = "", int pageNum = 1, string filter = null)
         {
             int pageSize = 30;
-            var parameter = Expression.Parameter(typeof(Burialmain), "x");
-            var property = Expression.Property(parameter, field);
-            var containsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-            var queryExpression = Expression.Constant(query);
-            var containsCall = Expression.Call(property, containsMethod, queryExpression);
-            var nullCheck = Expression.Equal(queryExpression, Expression.Constant(null, typeof(string)));
-            var orExpression = Expression.Or(containsCall, nullCheck);
-            var wherePredicate = Expression.Lambda<Func<Burialmain, bool>>(orExpression, parameter);
-
             var x = new RecordsViewModel
             {
                 Burialmains = MummyContext.Burialmains
-                    .Where(wherePredicate)
+                    .Where(x => x.Headdirection == filter | filter == null)
                     .OrderBy(x => x.Preservation)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
                     .ToList(),
+
                 PageInfo = new PageInfo
                 {
                     TotalNumRecords =
-                        (query == null ?
-                        MummyContext.Burialmains.Count() :
-                        MummyContext.Burialmains.Where(wherePredicate).Count()),
+                                (filter == null ?
+                                MummyContext.Burialmains.Count() :
+                                MummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
                     RecordsPerPage = pageSize,
                     CurrentPage = pageNum
                 },
-                Filter = true
+                Filter = false
             };
+
+            try
+            {
+                var parameter = Expression.Parameter(typeof(Burialmain), "x");
+                var property = Expression.Property(parameter, field);
+                var containsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                var queryExpression = Expression.Constant(query);
+                var containsCall = Expression.Call(property, containsMethod, queryExpression);
+                var nullCheck = Expression.Equal(queryExpression, Expression.Constant(null, typeof(string)));
+                var orExpression = Expression.Or(containsCall, nullCheck);
+                var wherePredicate = Expression.Lambda<Func<Burialmain, bool>>(orExpression, parameter);
+
+                x = new RecordsViewModel
+                {
+                    Burialmains = MummyContext.Burialmains
+                        .Where(wherePredicate)
+                        .OrderBy(x => x.Preservation)
+                        .ToList(),
+                    PageInfo = new PageInfo
+                    {
+                        TotalNumRecords =
+                            (query == null ?
+                            MummyContext.Burialmains.Count() :
+                            MummyContext.Burialmains.Where(wherePredicate).Count()),
+                            RecordsPerPage = pageSize,
+                            CurrentPage = pageNum
+                    },
+                    Filter = true
+                };
+            }
+            
+            catch
+            {
+                pageSize = 30;
+
+                x = new RecordsViewModel
+                {
+                    Burialmains = MummyContext.Burialmains
+                    .Where(x => x.Headdirection == filter | filter == null)
+                    .OrderBy(x => x.Preservation)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList(),
+
+                    PageInfo = new PageInfo
+                    {
+                        TotalNumRecords =
+                                (filter == null ?
+                                MummyContext.Burialmains.Count() :
+                                MummyContext.Burialmains.Where(x => x.Headdirection == filter).Count()),
+                        RecordsPerPage = pageSize,
+                        CurrentPage = pageNum
+                    },
+                    Filter = false
+                };
+            }
+
+
             return View(x);
         }
 
