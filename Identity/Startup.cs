@@ -50,28 +50,6 @@ namespace Identity
                 options.SlidingExpiration = true;
             });
 
-            services.AddAuthorization(opts => {
-                opts.AddPolicy("AspManager", policy => {
-                    policy.RequireRole("Manager");
-                    policy.RequireClaim("Coding-Skill", "ASP.NET Core MVC");
-                });
-            });
-
-            services.AddTransient<IAuthorizationHandler, AllowUsersHandler>();
-            services.AddAuthorization(opts => {
-                opts.AddPolicy("AllowTom", policy => {
-                    policy.AddRequirements(new AllowUserPolicy("tom"));
-                });
-            });
-
-            services.AddTransient<IAuthorizationHandler, AllowPrivateHandler>();
-            services.AddAuthorization(opts =>
-            {
-                opts.AddPolicy("PrivateAccess", policy =>
-                {
-                    policy.AddRequirements(new AllowPrivatePolicy());
-                });
-            });
 
             services.Configure<IdentityOptions>(opts =>
             {
