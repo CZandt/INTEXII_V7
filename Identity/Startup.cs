@@ -88,7 +88,7 @@ namespace Identity
             });
              
             services.AddSingleton<InferenceSession>(
-                new InferenceSession("head_directioon_model.onnx"));
+                new InferenceSession("wwwroot/head_directioon_model.onnx"));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
