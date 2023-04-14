@@ -541,30 +541,30 @@ namespace Identity.Models.Mummy
 
             modelBuilder.Entity<BurialmainBodyanalysischart>(entity =>
             {
-                entity.HasKey(e => new { e.MainBurialmainid, e.MainBodyanalysischartid })
+                entity.HasKey(e => new { e.Burialmainid, e.Bodyanalysischartid })
                     .HasName("main$burialmain_bodyanalysischart_pkey");
 
                 entity.ToTable("burialmain_bodyanalysischart");
 
-                entity.HasIndex(e => new { e.MainBodyanalysischartid, e.MainBurialmainid }, "idx_main$burialmain_bodyanalysischart");
+                entity.HasIndex(e => new { e.Bodyanalysischartid, e.Burialmainid }, "idx_main$burialmain_bodyanalysischart");
 
-                entity.Property(e => e.MainBurialmainid).HasColumnName("main$burialmainid");
+                entity.Property(e => e.Burialmainid).HasColumnName("main$burialmainid");
 
-                entity.Property(e => e.MainBodyanalysischartid).HasColumnName("main$bodyanalysischartid");
+                entity.Property(e => e.Bodyanalysischartid).HasColumnName("main$bodyanalysischartid");
             });
 
             modelBuilder.Entity<BurialmainCranium>(entity =>
             {
-                entity.HasKey(e => new { e.MainBurialmainid, e.MainCraniumid })
+                entity.HasKey(e => new { e.Burialmainid, e.Craniumid })
                     .HasName("main$burialmain_cranium_pkey");
 
                 entity.ToTable("burialmain_cranium");
 
-                entity.HasIndex(e => new { e.MainCraniumid, e.MainBurialmainid }, "idx_main$burialmain_cranium_main$cranium_main$burialmain");
+                entity.HasIndex(e => new { e.Craniumid, e.Burialmainid }, "idx_main$burialmain_cranium_main$cranium_main$burialmain");
 
-                entity.Property(e => e.MainBurialmainid).HasColumnName("main$burialmainid");
+                entity.Property(e => e.Burialmainid).HasColumnName("main$burialmainid");
 
-                entity.Property(e => e.MainCraniumid).HasColumnName("main$craniumid");
+                entity.Property(e => e.Craniumid).HasColumnName("main$craniumid");
             });
 
             modelBuilder.Entity<BurialmainTextile>(entity =>

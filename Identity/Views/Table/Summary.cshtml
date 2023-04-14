@@ -124,7 +124,7 @@
                 <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
                 {
-                    <td class="text-center"><a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td class="text-center"><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
                     <td class="text-center"><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
                 }
 
@@ -138,7 +138,7 @@
     <a href="Summary?pageNum=1">&lt;&lt;</a>
 
     <div page-model="@Model.PageInfo" page-action="Summary" page-classes-enabled="true" page-class="btn"
-         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+         page-class-normal="btn-outline-dark" page-class-selected="btn-info" class="btn-group pull-right m-1"></div>
 
     <a href="@ViewData["PageMaxRef"]">>></a>
 }

@@ -1,0 +1,74 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Textile
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Textile Data</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Description: @Model.Description</li>
+            <li class="list-group-item">Estimated Period: @Model.Estimatedperiod</li>
+            <li class="list-group-item">Direction: @Model.Direction</li>
+            <li class="list-group-item">Burial Number: @Model.Burialnumber</li>
+            <li class="list-group-item">Locale: @Model.Locale</li>
+            <li class="list-group-item">Photograph Date: @Model.Photographeddate</li>
+            <li class="list-group-item">Sample Date: @Model.Sampledate</li>
+            <li class="list-group-item">Textile ID: @Model.Textileid</li>
+        </ul>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Color</th>
+                </tr>
+
+                @foreach (var item in Model.ColorTextiles)
+                {
+                    <tr>
+                        <td>@item.Color.Value</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Structure</th>
+                </tr>
+
+                @foreach (var item in Model.StructureTextiles)
+                {
+                    <tr>
+                        <td>@item.Structure.Value)</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-sm table-bordered">
+                <tr>
+                    <th>Function</th>
+                </tr>
+
+                @foreach (var item in Model.TextilefunctionTextiles)
+                {
+                    <tr>
+                        <td>@item.Textilefunction.Value)</td>
+
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
