@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Artifacts";
+
+    ViewData["PageMaxRef"] = "Artifacts?pageNum=" + (Model.PageInfo.TotalPages).ToString();
+    ViewData["PageMaxText"] = "Artifacts?pageNum=" + (Model.PageInfo.TotalPages).ToString();
 }
 
 @model RecordsViewModel
@@ -12,23 +15,34 @@
 
 <table class="table table-sm table-bordered">
     <tr>
-        <th>Details</th>
-        <th>Register Num</th>
-        <th>Photographed</th>
-        <th>Notes</th>
-        <th>Coordinate Set</th>
+        <th>Position</th>
+        <th>Date</th>
+        <th>Material</th>
+        <th>Dimensions</th>
+        <th>Provenance</th>
+        <th>Description</th>
+        <th>Current Location</th>
     </tr>
 
-    @foreach (Artifactfagelgamousregister x in Model.Artifactfagelgamousregisters)
+    @foreach (Artifactkomaushimregister x in Model.Artifactkomaushimregisters)
     {
         <tr>
-            <td><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id">View Details</a></td>
-            <td>@x.Registernum</td>
-            <td>@x.Photographed</td>
-            <td>@x.Notes</td>
-            <td>@x.Coordinateset</td>
+            <td>@x.Position</td>
+            <td>@x.Date</td>
+            <td>@x.Material</td>
+            <td>@x.Dimensions</td>
+            <td>@x.Provenance</td>
+            <td>@x.Description</td>
+            <td>@x.Currentlocation</td>
+            <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
         </tr>
     }
 </table>
 
-<div page-model="@Model.PageInfo" page-action="Summary"></div>
+<a href="Artifacts?pageNum=1"><<</a>
+
+<div page-model="@Model.PageInfo" page-action="Artifacts" page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+
+<a href="@ViewData["PageMaxRef"]">>></a>
+

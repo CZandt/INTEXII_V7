@@ -4,54 +4,93 @@
 
 @model Burialmain
 
-<h1>Add/Edit Burial Data</h1>
 
-<div>
-    <form method="post">
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <h2>Add/Edit Burial Data</h2>
+            <div asp-validation-summary="All"></div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label asp-for="Depth">Depth</label>
+                <input asp-for="Depth" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Length">Length</label>
+                <input asp-for="Length" class="form-control" />
+            </div>
 
-        <div asp-validation-summary="All"></div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Headdirection">Head Direction</label>
+                    </div>
+                    <select class="custom-select" asp-for="Headdirection">
+                        <option value="E">East</option>
+                        <option value="W">West</option>
+                    </select>
+                </div>
+               
 
-        <label asp-for="Depth">Depth</label>
-        <input asp-for="Depth" /><br />
-        
-        <label asp-for="Length">Length</label>
-        <input asp-for="Length" /><br />
-        
-        <label asp-for="Headdirection">Head Direction</label>
-        <select asp-for="Headdirection">
-            <option value="N">North</option>
-            <option value="S">South</option>
-            <option value="E">East</option>
-            <option value="W">West</option>
-        </select><br />
-        
-        <label  asp-for="Preservation">Preservation</label>
-        <input asp-for="Preservation" /><br />
+            </div>
 
-        <label asp-for="Wrapping">Wrapping</label>
-        <select asp-for="Wrapping">
-            <option value="B">B</option>
-            <option value="H">H</option>
-            <option value="W">W</option>
-        </select><br />
+            <div class="form-group">
+                <label asp-for="Preservation">Preservation</label>
+                <input asp-for="Preservation" class="form-control" />
+            </div>
 
-        <label asp-for="Sex">Sex</label>
-        <select asp-for="Sex">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select><br />
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Wrapping">Wrapping</label>
+                    </div>
+                    <select class="custom-select" asp-for="Wrapping">
+                        <option value="B">B</option>
+                        <option value="H">H</option>
+                        <option value="W">W</option>
+                    </select>
+                </div>
 
-        <label asp-for="Ageatdeath">Ageatdeath</label>
-        <select asp-for="Ageatdeath">
-            <option value="A">A</option>
-            <option value="N">N</option>
-            <option value="I">I</option>
-            <option value="C">C</option>
-        </select><br />
 
-        <label asp-for="Haircolor">Haircolor</label>
-        <input asp-for="Haircolor" /><br />
+            </div>
 
-        <button type="submit">Submit Data</button>
-    </form>
-</div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Sex">Sex</label>
+                    </div>
+                    <select class="custom-select" asp-for="Sex">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" asp-for="Ageatdeath">Age at death</label>
+                    </div>
+                    <select class="custom-select" asp-for="Ageatdeath">
+                        <option value="A">A</option>
+                        <option value="N">N</option>
+                        <option value="I">I</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Haircolor">Haircolor</label>
+                <input asp-for="Haircolor" class="form-control" />
+            </div>
+
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" type="submit">Submit Data</button>
+        </div>
+    </div>
+</form>

@@ -23,8 +23,10 @@ namespace Identity.Controllers
             return View("Index",userManager.Users);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create() => View();
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Create(User user)
         {
@@ -41,24 +43,8 @@ namespace Identity.Controllers
 
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
 
-                // uncomment for email confirmation (link - https://www.yogihosting.com/aspnet-core-identity-email-confirmation/)
-                /*if (result.Succeeded)
-                {
-                    var token = await userManager.GenerateEmailConfirmationTokenAsync(appUser);
-                    var confirmationLink = Url.Action("ConfirmEmail", "Email", new { token, email = user.Email }, Request.Scheme);
-                    EmailHelper emailHelper = new EmailHelper();
-                    bool emailResponse = emailHelper.SendEmail(user.Email, confirmationLink);
-
-                    if (emailResponse)
-                        return RedirectToAction("Index");
-                    else
-                    {
-                        // log email failed 
-                    }
-                }*/
-
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                 {
                     foreach (IdentityError error in result.Errors)
@@ -75,7 +61,7 @@ namespace Identity.Controllers
             if (user != null)
                 return View(user);
             else
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexRoles");
         }
 
         [Authorize(Roles = "Admin")]
@@ -99,7 +85,7 @@ namespace Identity.Controllers
                 {
                     IdentityResult result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
-                        return RedirectToAction("Index");
+                        return RedirectToAction("IndexRoles");
                     else
                         Errors(result);
                 }
@@ -124,7 +110,7 @@ namespace Identity.Controllers
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
                 if (result.Succeeded)
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexRoles");
                 else
                     Errors(result);
             }

@@ -2,12 +2,80 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "PredictedSupervised";
+    ViewData["Title"] = "Prediction";
+
+    if (Model.PredictedValue == "W") {
+
+        ViewData["Direction"] = "West";
+    }
+
+    if (Model.PredictedValue == "E")
+    {
+        ViewData["Direction"] = "East";
+    }
 }
 @model Prediction
 
 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    @if (Model.PredictedValue == "W")
+            {
+                <h2>Predicted Head Direction - West</h2>
+            } 
+                    @if (Model.PredictedValue == "E")
+            {
+                <h2>Predicted Head Direction - East</h2>
+            }
+                </div>
 
-<h1>Supervised</h1>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-body">
+                                    
+                                    @if (Model.PredictedValue == "W")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/WestFacingHead.jpg">
+                                    }
+                                    
+                                    @if (Model.PredictedValue == "E")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/EastFacingHead.jpg">
+                                    }
 
-<h2>Test Prediction: @Model.PredictedValue</h2>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    @if (Model.PredictedValue == "W")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/1200px-Compass_Rose_English_West.svg.png">
+                                    }
+                                    @if (Model.PredictedValue == "E")
+                                    {
+                                        <img class="card-img" src="~/img/Supervised/1200px-Compass_Rose_English_East.svg.png">
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                                <p class="text-center">Using the inputs provided the logistic regression model predicted a head direction of @ViewData["Direction"] </p>
+                            </div>
+                   
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Home" asp-action="Supervised" class="btn btn-secondary">Make Another Prediction</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

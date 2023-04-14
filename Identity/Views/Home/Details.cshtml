@@ -2,9 +2,25 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Details";
 }
 
 @model Burialmain
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Burial Data</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Date of Excavation: @Model.Dateofexcavation</li>
+                <li class="list-group-item">Preservation State: @Model.Preservation</li>
+                <li class="list-group-item">Field Notes: @Model.Fieldbookpage</li>
+                <li class="list-group-item">Samples Collected: @Model.Samplescollected</li>
+            </ul>
+        </div>
+    </div>
+
+<br />
 
 <h3>Textiles</h3>
 <table class="table table-sm table-bordered">
@@ -20,12 +36,12 @@
     @foreach (var item in Model.BurialmainTextiles)
     {
         <tr>
-            <td>@Html.DisplayNameFor(model => item.Textile.Direction)</td>
-            <td>@Html.DisplayNameFor(model => item.Textile.Locale)</td>
-            <td>@Html.DisplayNameFor(model => item.Textile.Description)</td>
-            <td>@Html.DisplayNameFor(model => item.Textile.Estimatedperiod)</td>
-            <td>@Html.DisplayNameFor(model => item.Textile.Photographeddate)</td>
-            <td>@Html.DisplayNameFor(model => item.Textile.Sampledate)</td>
+            <td>@item.Textile.Direction</td>
+            <td>@item.Textile.Locale</td>
+            <td>@item.Textile.Description</td>
+            <td>@item.Textile.Estimatedperiod</td>
+            <td>@item.Textile.Photographeddate</td>
+            <td>@item.Textile.Sampledate</td>
         </tr>
     }
 </table>
@@ -48,16 +64,16 @@
 
     @foreach (var item in Model.ArtifactkomaushimregisterBurialmains)
     {
-<tr>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Number)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Position)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Date)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Material)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Dimensions)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Provenance)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Currentlocation)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Rehousedto)</td>
-    <td>@Html.DisplayNameFor(model => item.Artifactkomaushimregister.Photos)</td>
-</tr>
+        <tr>
+            <td>@item.Artifactkomaushimregister.Number)</td>
+            <td>@item.Artifactkomaushimregister.Position)</td>
+            <td>@item.Artifactkomaushimregister.Date)</td>
+            <td>@item.Artifactkomaushimregister.Material)</td>
+            <td>@item.Artifactkomaushimregister.Dimensions)</td>
+            <td>@item.Artifactkomaushimregister.Provenance)</td>
+            <td>@item.Artifactkomaushimregister.Currentlocation)</td>
+            <td>@item.Artifactkomaushimregister.Rehousedto)</td>
+            <td>@item.Artifactkomaushimregister.Photos)</td>
+        </tr>
     }
 </table>

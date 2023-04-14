@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Summary";
+
+    ViewData["PageMaxRef"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
+    ViewData["PageMaxText"] = "Summary?pageNum=" + (Model.PageInfo.TotalPages).ToString();
 }
 
 @model RecordsViewModel
@@ -7,17 +10,42 @@
 <h1>Burial Summary</h1>
 
 <div>
-    <partial name="TableNav"/>
+    <partial name="TableNav" />
 </div>
- 
-<div>
-    <input type="text" id="searchBar" placeholder="Search...">
-</div>
+
 <div>
     <br />
+
+
     <ul class="nav">
-        <li class="nav-item">
-            <vc:filter></vc:filter>
+        <li>
+            <form asp-controller="Table" asp-action="Summary" method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select class="custom-select" name="field">
+                            <option value="Squarenorthsouth">Square North/South</option>
+                            <option value="Northsouth">North/South</option>
+                            <option value="Squareeastwest">Square East/West</option>
+                            <option value="Northsouth">East/West</option>
+                            <option value="Area">Area</option>
+                            <option value="Burialnumber">Burial Number</option>
+                            <option value="Sex">Sex</option>
+                            <option value="Depth">Burial Depth</option>
+                            <option value="Ageatdeath">Age at Death</option>
+                            <option value="Headdirection">Head Direction</option>
+                            <option value="Haircolor">Hair Color</option>
+                            <option value="Facebundles">Face Bundles</option>
+                        </select>
+
+                    </div>
+                    <input type="text" name="query" id="searchBar" placeholder="Filter results" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </div>
+
+                </div>
+
+            </form>
         </li>
 
         <li class="nav-item ml-auto">
@@ -26,22 +54,22 @@
 
         @if (User.IsInRole("Researcher") || (User.IsInRole("Admin")))
         {
-        <li class="nav-item ml-auto">
-            <br />
-            <a asp-controller="Home" asp-action="AddData" class="btn btn-secondary">Add a Record</a>
-        </li>
+            <li class="nav-item ml-auto">
+                <br />
+                <a asp-controller="Home" asp-action="AddData" class="btn btn-secondary">Add a Record</a>
+            </li>
 
         }
 
     </ul>
-    
-    
+
+
 </div>
 <br />
 <table class="table table-sm table-bordered table-hover">
     <tbody id="myTable">
         <tr>
-            
+
             <th class="text-center">Burial ID</th>
             <th class="text-center">Sex</th>
             <th class="text-center">Burial Depth</th>
@@ -65,13 +93,22 @@
                 <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Researcher"))
                 {
-                    <td class="text-center"><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
-                    <td class="text-center"><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
+                    <td class="text-center"><a class="btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td class="text-center"><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.Id">Delete</a></td>
                 }
-                
+
             </tr>
         }
     </tbody>
 </table>
 
-<div page-model="@Model.PageInfo" page-action="Summary"></div>
+@if (Model.Filter == false)
+{
+    <a href="Summary?pageNum=1">&lt;&lt;</a>
+
+    <div page-model="@Model.PageInfo" page-action="Summary" page-classes-enabled="true" page-class="btn"
+         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+
+    <a href="@ViewData["PageMaxRef"]">>></a>
+}
+

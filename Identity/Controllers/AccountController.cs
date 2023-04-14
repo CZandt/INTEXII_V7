@@ -39,7 +39,7 @@ namespace Identity.Controllers
                 if (appUser != null)
                 {
                     await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, true); //Changed to true
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember, true);
 
                     if (result.Succeeded)
                         return Redirect(login.ReturnUrl ?? "/");
@@ -49,16 +49,8 @@ namespace Identity.Controllers
                         return RedirectToAction("LoginTwoStep", new { appUser.Email, login.ReturnUrl });
                     }
 
-                    // Uncomment Email confirmation https://www.yogihosting.com/aspnet-core-identity-email-confirmation/
-                    /*bool emailStatus = await userManager.IsEmailConfirmedAsync(appUser);
-                    if (emailStatus == false)
-                    {
-                        ModelState.AddModelError(nameof(login.Email), "Email is unconfirmed, please confirm it first");
-                    }*/
-
-                    // Uncomment user lockout https://www.yogihosting.com/aspnet-core-identity-user-lockout/
-                    /*if (result.IsLockedOut)
-                        ModelState.AddModelError("", "Your account is locked out. Kindly wait for 10 minutes and try again");*/
+                    if (result.IsLockedOut)
+                        ModelState.AddModelError("", "Your account is locked out. Kindly wait for 10 minutes and try again");
                 }
                 ModelState.AddModelError(nameof(login.Email), "Login Failed: Invalid Email or password");
             }
@@ -74,47 +66,6 @@ namespace Identity.Controllers
         public IActionResult AccessDenied()
         {
             return View();
-        }
-
-        [AllowAnonymous]
-        public IActionResult GoogleLogin()
-        {
-            string redirectUrl = Url.Action("GoogleResponse", "Account");
-            var properties = signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
-            return new ChallengeResult("Google", properties);
-        }
-
-        [AllowAnonymous]
-        public async Task<IActionResult> GoogleResponse()
-        {
-            ExternalLoginInfo info = await signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-                return RedirectToAction(nameof(Login));
-
-            var result = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
-            string[] userInfo = { info.Principal.FindFirst(ClaimTypes.Name).Value, info.Principal.FindFirst(ClaimTypes.Email).Value };
-            if (result.Succeeded)
-                return View(userInfo);
-            else
-            {
-                AppUser user = new AppUser
-                {
-                    Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
-                    UserName = info.Principal.FindFirst(ClaimTypes.Email).Value
-                };
-
-                IdentityResult identResult = await userManager.CreateAsync(user);
-                if (identResult.Succeeded)
-                {
-                    identResult = await userManager.AddLoginAsync(user, info);
-                    if (identResult.Succeeded)
-                    {
-                        await signInManager.SignInAsync(user, false);
-                        return View(userInfo);
-                    }
-                }
-                return AccessDenied();
-            }
         }
 
         [AllowAnonymous]
