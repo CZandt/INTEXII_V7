@@ -46,25 +46,36 @@
 
 <div>
     <br />
+
+
     <ul class="nav">
         <li>
             <form asp-controller="Table" asp-action="Summary" method="post">
-                <select name="field">
-                    <option value="Squarenorthsouth">Square North/South</option>
-                    <option value="Northsouth">North/South</option>
-                    <option value="Squareeastwest">Square East/West</option>
-                    <option value="Northsouth">East/West</option>
-                    <option value="Area">Area</option>
-                    <option value="Burialnumber">Burial Number</option>
-                    <option value="Sex">Sex</option>
-                    <option value="Depth">Burial Depth</option>
-                    <option value="Ageatdeath">Age at Death</option>
-                    <option value="Headdirection">Head Direction</option>
-                    <option value="Haircolor">Hair Color</option>
-                    <option value="Facebundles">Face Bundles</option>
-                </select>
-                <input type="text" name="query" id="searchBar" placeholder="Filter results" />
-                <button type="submit" class="btn btn-info">Search</button>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <select class="custom-select" name="field">
+                            <option value="Squarenorthsouth">Square North/South</option>
+                            <option value="Northsouth">North/South</option>
+                            <option value="Squareeastwest">Square East/West</option>
+                            <option value="Northsouth">East/West</option>
+                            <option value="Area">Area</option>
+                            <option value="Burialnumber">Burial Number</option>
+                            <option value="Sex">Sex</option>
+                            <option value="Depth">Burial Depth</option>
+                            <option value="Ageatdeath">Age at Death</option>
+                            <option value="Headdirection">Head Direction</option>
+                            <option value="Haircolor">Hair Color</option>
+                            <option value="Facebundles">Face Bundles</option>
+                        </select>
+
+                    </div>
+                    <input type="text" name="query" id="searchBar" placeholder="Filter results" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </div>
+
+                </div>
+
             </form>
         </li>
 

@@ -7,11 +7,19 @@
 
 @model Burialmain
     <div class="card">
-        <h2 class="card-title">Burial Data</h2>
-        <p class="card-text">Date of Excavation: @Model.Dateofexcavation</p>
-        <p class="card-text">Preservation State: @Model.Preservation</p>
-        <p class="card-text">Field Notes: @Model.Fieldbookpage</p>
-        <p class="card-text">Samples Collected: @Model.Samplescollected</p>
+        <div class="card-header">
+            <h2 class="card-title">Burial Data</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Date of Excavation: @Model.Dateofexcavation</li>
+                <li class="list-group-item">Preservation State: @Model.Preservation</li>
+                <li class="list-group-item">Field Notes: @Model.Fieldbookpage</li>
+                <li class="list-group-item">Samples Collected: @Model.Samplescollected</li>
+            </ul>
+        </div>
+        
+
     </div>
 
 <br />
