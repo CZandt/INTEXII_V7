@@ -12,5 +12,7 @@ namespace Identity.Models.ViewModels
         public PageInfo PageInfo { get; set; }
         public List<Textile> Textiles { get; set; }
         public List<Artifactfagelgamousregister> Artifactfagelgamousregisters { get; set; }
+        public List<Artifactkomaushimregister> Artifactkomaushimregisters { get; set; }
+        public bool Filter { get; set; }
     }
 }

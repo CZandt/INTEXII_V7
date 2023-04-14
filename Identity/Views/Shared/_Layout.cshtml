@@ -11,18 +11,6 @@
             margin: 20px 0;
         }
     </style>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#searchBar").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    </script>
-
 </head>
 <body>
     <header>

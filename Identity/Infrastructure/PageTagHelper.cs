@@ -41,20 +41,25 @@ namespace Identity.Infrastructure
 
             for (int i = 1; i <= PageModel.TotalPages; i++)
             {
-                TagBuilder tb = new TagBuilder("a");
 
-                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
-
-                if (PageClassesEnabled)
+                if ((i >= (PageModel.CurrentPage - 2)) & (i <= (PageModel.CurrentPage + 2)))
                 {
-                    tb.AddCssClass(PageClass);
-                    tb.AddCssClass(i == PageModel.CurrentPage
-                        ? PageClassSelected : PageClassNormal);
+                    TagBuilder tb = new TagBuilder("a");
+
+                    tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+
+                    if (PageClassesEnabled)
+                    {
+                        tb.AddCssClass(PageClass);
+                        tb.AddCssClass(i == PageModel.CurrentPage
+                            ? PageClassSelected : PageClassNormal);
+                    }
+
+                    tb.InnerHtml.Append(i.ToString());
+
+                    final.InnerHtml.AppendHtml(tb);
                 }
-
-                tb.InnerHtml.Append(i.ToString());
-
-                final.InnerHtml.AppendHtml(tb);
+                
             }
 
             tho.Content.AppendHtml(final.InnerHtml);

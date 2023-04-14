@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Textiles";
+
+    ViewData["PageMaxRef"] = "Textiles?pageNum=" + (Model.PageInfo.TotalPages).ToString();
+    ViewData["PageMaxText"] = "Textiles?pageNum=" + (Model.PageInfo.TotalPages).ToString();
 }
 
 @model RecordsViewModel
@@ -10,9 +13,22 @@
     <partial name="TableNav" />
 </div>
 
+@*<div>
+    <form asp-controller="Table" asp-action="Textiles" method="post">
+        <select name="field">
+            <option value="Color.Value">Color</option>
+            <option value="Textilefunction.Value">Function</option>
+            <option value="Structure.Value">Structure</option>
+        </select>
+        <input type="text" name="query" id="searchBar" placeholder="Filter results" />
+        <button type="submit">Search</button>
+    </form>
+</div>*@
+
+
 <table class="table table-sm table-bordered">
     <tr>
-        
+
         <th class="text-center">Direction</th>
         <th class="text-center">Locale</th>
         <th class="text-center">Description</th>
@@ -27,36 +43,41 @@
 
     @foreach (var x in Model.Textiles)
     {
-<tr>
-    
-    <td class="text-center">@x.Direction </td>
-    <td class="text-center">@x.Locale</td>
-    <td class="text-center">@x.Description</td>
-    <td class="text-center">@x.Estimatedperiod</td>
-    <td class="text-center">@x.Photographeddate</td>
-    <td class="text-center">@x.Sampledate</td>
+        <tr>
 
-    <td class="text-center">
-        @foreach (var color in x.ColorTextiles)
-        {
-            <p>@Html.DisplayNameFor(model => color.Color.Value)</p>
-        }
-    </td>
-    <td class="text-center">
-        @foreach (var function in x.TextilefunctionTextiles)
-        {
-            <p>@Html.DisplayNameFor(model => function.Textilefunction.Value)</p>
-        }
-    </td>
-    <td class="text-center">
-        @foreach (var structure in x.StructureTextiles)
-        {
-            <p>@Html.DisplayNameFor(model => structure.Structure.Value)</p>
-        }
-    </td>
-    <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
-</tr>
+            <td class="text-center">@x.Direction </td>
+            <td class="text-center">@x.Locale</td>
+            <td class="text-center">@x.Description</td>
+            <td class="text-center">@x.Estimatedperiod</td>
+            <td class="text-center">@x.Photographeddate</td>
+            <td class="text-center">@x.Sampledate</td>
+
+            <td class="text-center">
+                @foreach (var color in x.ColorTextiles)
+                {
+                    <p>@color.Color.Value)</p>
+                }
+            </td>
+            <td class="text-center">
+                @foreach (var function in x.TextilefunctionTextiles)
+                {
+                    <p>@function.Textilefunction.Value)</p>
+                }
+            </td>
+            <td class="text-center">
+                @foreach (var structure in x.StructureTextiles)
+                {
+                    <p>@structure.Structure.Value)</p>
+                }
+            </td>
+            <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
+        </tr>
     }
 </table>
 
-<div page-model="@Model.PageInfo" page-action="Textiles"></div>
+<a href="Textiles?pageNum=1"><<</a>
+
+<div page-model="@Model.PageInfo" page-action="Textiles" page-classes-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+
+<a href="@ViewData["PageMaxRef"]">>></a>
