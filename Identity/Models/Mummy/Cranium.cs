@@ -23,5 +23,7 @@ namespace Identity.Models.Mummy
         public decimal? Maxcraniumbreadth { get; set; }
         public decimal? BizygomaticDiameter { get; set; }
         public decimal? MidOrbitalBreadth { get; set; }
+
+        public ICollection<BurialmainCranium> BurialmainCrania { get; set; }
     }
 }

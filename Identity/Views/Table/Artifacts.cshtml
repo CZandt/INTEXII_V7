@@ -34,7 +34,6 @@
             <td>@x.Provenance</td>
             <td>@x.Description</td>
             <td>@x.Currentlocation</td>
-            <td class="text-center"><a asp-controller="Home" asp-action="Details" asp-route-id="@x.Id" class="btn btn-info">View Details</a></td>
         </tr>
     }
 </table>
@@ -42,7 +41,7 @@
 <a href="Artifacts?pageNum=1"><<</a>
 
 <div page-model="@Model.PageInfo" page-action="Artifacts" page-classes-enabled="true" page-class="btn"
-     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
+     page-class-normal="btn-outline-dark" page-class-selected="btn-info" class="btn-group pull-right m-1"></div>
 
 <a href="@ViewData["PageMaxRef"]">>></a>
 

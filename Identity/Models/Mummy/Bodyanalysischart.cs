@@ -35,5 +35,6 @@ namespace Identity.Models.Mummy
         public bool? Parietalblossing { get; set; }
         public string Observations { get; set; }
         public string Humerus { get; set; }
+        public ICollection<BurialmainBodyanalysischart> BurialmainBodyanalysischarts { get; set; }
     }
 }

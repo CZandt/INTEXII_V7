@@ -6,23 +6,25 @@
 }
 
 @model Burialmain
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">Burial Data</h2>
-        </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Date of Excavation: @Model.Dateofexcavation</li>
-                <li class="list-group-item">Preservation State: @Model.Preservation</li>
-                <li class="list-group-item">Field Notes: @Model.Fieldbookpage</li>
-                <li class="list-group-item">Samples Collected: @Model.Samplescollected</li>
-            </ul>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Burial Data</h2>
     </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Date of Excavation: @Model.Dateofexcavation</li>
+            <li class="list-group-item">Preservation State: @Model.Preservation</li>
+            <li class="list-group-item">Field Notes: @Model.Fieldbookpage</li>
+            <li class="list-group-item">Samples Collected: @Model.Samplescollected</li>
+        </ul>
+    </div>
+
+
+</div>
 
 <br />
 
-<h3>Textiles</h3>
+<h4>Textiles</h4>
 <table class="table table-sm table-bordered">
     <tr>
         <th>Direction</th>
@@ -48,7 +50,7 @@
 
 <br />
 
-<h3>Artifacts</h3>
+<h4>Artifacts</h4>
 <table class="table table-sm table-bordered">
     <tr>
         <th>Number</th>
@@ -75,5 +77,60 @@
             <td>@item.Artifactkomaushimregister.Rehousedto)</td>
             <td>@item.Artifactkomaushimregister.Photos)</td>
         </tr>
+    }
+</table>
+
+<br />
+
+<h4>Cranial Measurements</h4>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>AlphaCore</th>
+        <th>Basion Bregma Height</th>
+        <th>Basion Nasion</th>
+        <th>Basion Prosthion Length</th>
+        <th>Bizygomatic Diameter</th>
+        <th>Interobital Breadth</th>
+        <th>Interorbital Breadth</th>
+    </tr>
+
+    @foreach (var item in Model.BurialmainCrania)
+    {
+        <tr>
+            <td>@item.Cranium.AlphaCore)</td>
+            <td>@item.Cranium.BasionBregmaHeight)</td>
+            <td>@item.Cranium.BasionNasion)</td>
+            <td>@item.Cranium.BasionProsthionLength)</td>
+            <td>@item.Cranium.BizygomaticDiameter)</td>
+            <td>@item.Cranium.InterobitalBreadth)</td>
+        </tr>
+    }
+</table>
+
+<br />
+
+<h4>Body Analysis</h4>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Observations</th>
+        <th>Femur</th>
+        <th>Femurlength</th>
+        <th>Femur Head Diameter</th>
+        <th>Humerus</th>
+        <th>Humerus Length</th>
+        <th>Humerus Head Diameter</th>
+    </tr>
+
+    @foreach (var item in Model.BurialmainBodyanalysischarts)
+    {
+<tr>
+    <td>@item.Bodyanalysischart.Observations</td>
+    <td>@item.Bodyanalysischart.Femur</td>
+    <td>@item.Bodyanalysischart.Femurlength</td>
+    <td>@item.Bodyanalysischart.Femurheaddiameter</td>
+    <td>@item.Bodyanalysischart.Humerus</td>
+    <td>@item.Bodyanalysischart.Humeruslength</td>
+    <td>@item.Bodyanalysischart.Humerusheaddiameter</td>
+</tr>
     }
 </table>

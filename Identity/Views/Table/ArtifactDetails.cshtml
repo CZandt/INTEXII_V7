@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Artifactkomaushimregister
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title">Textile Data</h2>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Description: @Model.Description</li>
+            <li class="list-group-item">Model: @Model.Date</li>
+            <li class="list-group-item">Dimensions: @Model.Dimensions</li>
+            <li class="list-group-item">Material: @Model.Material</li>
+            <li class="list-group-item">Remarks: @Model.Remarks</li>
+            <li class="list-group-item">Rehoused To: @Model.Rehousedto</li>
+            <li class="list-group-item">Current Location: @Model.Currentlocation</li>
+
+        </ul>
+    </div>
+</div>

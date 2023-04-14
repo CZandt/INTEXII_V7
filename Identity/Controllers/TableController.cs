@@ -162,24 +162,50 @@ namespace Identity.Controllers
             return View(x);
         }
 
-        public IActionResult Artifacts(int pageNum = 1)
+        public async Task<IActionResult> TextileDetailsAsync(long id)
+        {
+            var data = await MummyContext.Textiles
+               .Include(x => x.ColorTextiles)
+               .ThenInclude(x => x.Color)
+               .Include(x => x.TextilefunctionTextiles)
+               .ThenInclude(x => x.Textilefunction)
+               .Include(x => x.StructureTextiles)
+               .ThenInclude(x => x.Structure)
+               .SingleOrDefaultAsync(m => m.Id == id);
+
+            return View(data);
+        }
+        public IActionResult ArtifactDetails(long id)
+        {
+
+            var data = MummyContext.Artifactkomaushimregisters
+            .Where(x => x.Id == id);
+
+            return View(data);
+        }
+        public IActionResult Artifacts(string filter, int pageNum = 1)
         {
             int pageSize = 30;
 
             var x = new RecordsViewModel
             {
                 Artifactkomaushimregisters = MummyContext.Artifactkomaushimregisters
-                .OrderBy(x => x.Date)
+                .Where(x => x.Material == filter | filter == null)
+                .OrderBy(x => x.Id)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToList(),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumRecords = MummyContext.Artifactkomaushimregisters.Count(),
+                    TotalNumRecords =
+                            (filter == null ?
+                            MummyContext.Artifactkomaushimregisters.Count() :
+                            MummyContext.Artifactkomaushimregisters.Where(x => x.Material == filter).Count()),
                     RecordsPerPage = pageSize,
                     CurrentPage = pageNum
-                }
+                },
+                Filter = false
             };
 
             return View(x);

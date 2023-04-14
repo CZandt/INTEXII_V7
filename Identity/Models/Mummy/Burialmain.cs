@@ -45,5 +45,7 @@ namespace Identity.Models.Mummy
 
         public ICollection<BurialmainTextile> BurialmainTextiles { get; set; }
         public ICollection<ArtifactkomaushimregisterBurialmain> ArtifactkomaushimregisterBurialmains { get; set; }
+        public ICollection<BurialmainCranium> BurialmainCrania { get; set; }
+        public ICollection<BurialmainBodyanalysischart> BurialmainBodyanalysischarts { get; set; }
     }
 }

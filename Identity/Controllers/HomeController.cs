@@ -107,6 +107,10 @@ namespace Identity.Controllers
                 .ThenInclude(x => x.Textile)
                 .Include(x => x.ArtifactkomaushimregisterBurialmains)
                 .ThenInclude(x => x.Artifactkomaushimregister)
+                .Include(x => x.BurialmainCrania)
+                .ThenInclude(x => x.Cranium)
+                .Include(x => x.BurialmainBodyanalysischarts)
+                .ThenInclude(x => x.Bodyanalysischart)
                 .SingleOrDefaultAsync(m => m.Id == id);
 
             return View(data);
