@@ -17,7 +17,12 @@
                 <p>
                     In our unsupervised models, we determined the top two variables that have the greatest impact on the depth by using Principal Component Analysis (PCA) which is a model that helps identify the most significant variables in a dataset.
                     The principal components are ordered by the amount of variance they capture from the original data. To determine the top two variables that have the most impact on the depth, we looked at the coefficients of the variables after running the PCA model.
-                    In our case, the variables femurlength and southtohead had the highest coefficients. This means that these two variables contribute the most to the overall variance captured by the model. As a result, we identified femurlength and southtohead as the top two variables that have the greatest impact on the depth. After deciding on these two variables, we created a scatterplot to show the relationships between these three variables. We found that there is not a significant relationship that is obvious even for these top two variables. However, a couple things that might be noticeable is that as depth increases, the value of southtohead increases slightly hinting at a very small positive correlation. For the femur length and depth, there are many different femur lengths at different levels meaning that there is not much of a strong relationship. However one thing that is noticeable is that there are no very short femur length mummies burried at high depths. As children have shorter femurs, this could maybe draw conclusions such as the burrial of children was a practice introduced later as they were burried at lower depths. Alternatively, it could just mean children were just burried at lower depths. This is something that would need further research.
+                    In our case, the variables femurlength and southtohead had the highest coefficients. This means that these two variables contribute the most to the overall variance captured by the model. As a result, we identified femurlength and southtohead as the 
+                    top two variables that have the greatest impact on the depth. However, we also determined that the southtohead probably will not produce valuable insight compared to the femur length. There is another column in the database called "length" and we hypothesized that
+                    there must be some relationship between the length of the sarcophagus and the depth if there is a relationship with the femur length and depth. With this, we decided to plot the three variables 'length', 'femurlength', and 'depth.' From the visualization
+                    of the scatterplot, it is clear that the variables 'length' and 'femurlength' are clustered and both have very similar relationships to depth. This further validated of our analysis that femur length has a relationship with the depth of the burial. One thing 
+                    that is noticeable is that there are no very short femur length mummies burried at high depths. As children have shorter femurs, this could maybe draw conclusions such as the burrial of children was a practice introduced later as they were burried at lower depths. 
+                    Alternatively, it could just mean children were just burried at lower depths. This is something that would need further research.
                 </p>
                 <p>
                     Some other possible reasons for different femur lengths at different depth levels may include:
@@ -36,7 +41,7 @@
                     <h3>Scatter Plot</h3>
                 </div>
                 <div class="card-body text-center">
-                    <iframe src="~/scatterplot2.html" width="90%" height="600" frameborder="10"></iframe>
+                    <iframe src="~/scatterplot3.html" width="90%" height="600" frameborder="10"></iframe>
                 </div>
             </div>
         </div>"
